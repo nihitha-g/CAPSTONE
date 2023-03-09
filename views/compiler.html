@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Compilex Demo</title>
+   
+  <!-- Link to Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    /* Set height of logo and options div to full screen */
+    #logo-options {
+      height: 100vh;
+    }
+
+    /* Set height of editor div to full screen minus navbar height */
+    #editor {
+      height: calc(100vh - 26px);
+    }
+  </style>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Dark mode CSS -->
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.3/ace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.3/ace.js" integrity="sha512-ccHRaolwYDPEgVPUVUyM3PppLOJHTa0sDgpzH0Q2VcS/WKDdgT3wosDUyf20H3N7fhedykwG8bBFv3IdJh3IOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    <!-- CodeMirror Theme CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/darcula.min.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><img src="./assets/images/logo-light.svg" alt="logo" width="170px" height="50"></a>
+      </nav>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <!-- Options column -->
+        <div class="col-md-12">
+          <div class="card border rounded-3">
+            <div class="card-header">
+              <h5 class="mb-0">Problem Statement</h5>
+            </div>
+            <div class="card-body">
+              <div id="editor1" style="height: 100px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card border rounded-3">
+            <div class="card-header">
+              <h5 class="mb-0">Input Format</h5>
+            </div>
+            <div class="card-body">
+              <div id="editor2" style="height: 100px;"></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-12">
+          <div class="card border rounded-3">
+            <div class="card-header">
+              <h5 class="mb-0">Output Format</h5>
+            </div>
+            <div class="card-body">
+              <div id="editor3" style="height: 100px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card border rounded-3">
+            <div class="card-header">
+              <h5 class="mb-0">Constraints</h5>
+            </div>
+            <div class="card-body">
+              <div id="editor4" style="height: 170px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card border rounded-3">
+            <div class="card-header">
+              <h5 class="mb-0">Sample Inputs</h5>
+            </div>
+            <div class="card-body">
+              <div id="editor5" style="height: 30px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card border rounded-3">
+            <div class="card-header">
+              <h5 class="mb-0">Sample Outputs</h5>
+            </div>
+            <div class="card-body">
+              <div id="editor6" style="height: 30px;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card border rounded-3">
+            <div class="card-header">
+              <h5 class="mb-0">Explanation</h5>
+            </div>
+            <div class="card-body">
+              <div id="editor7" style="height: 100px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Code editor column -->
+      <div class="col-md-8 mt-2">
+        <h2 class="text-center">Solve the Given Problem Statement</h2>
+        <div id="editor"></div>
+        <div class="row">
+        <select  class="col-6 text-center mt-4" style="font-weight: 20px;  margin-right: 20px; margin-left: 20px;" name="lang">
+          <option selected>Select Language</option>
+          <option value="C">C</option>
+          <option value="C++">C++</option>
+          <option value="Java">Java</option>  
+          <option value="Python">Python</option> 
+          <option value="CS">C#</option>  
+          <option value="VB">VB</option>  
+      </select>
+      <div class="mt-4" style="margin-left: 20%;">
+        <h6 class="text-center" >Compile With Input</h6>
+        <div class="form-check text-center">
+
+          <input type="radio" name="inputRadio" id="inputRadio" value="true"/>yes
+          <input type="radio" name="inputRadio" id="inputRadio" value="false"/>No
+        </div>
+       
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="input"><h4>Input</h4></label>
+          <textarea rows="5" id="input" name="input" class="form-control"></textarea>
+        </div>
+      </div>
+              <!-- Output column -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="output"><h4>Output</h4></label>
+                  <textarea rows="5" id="output" name="output" class="form-control" disabled></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4">
+              <h4 class="text-center"></h4>
+              <button type="button" id="runButton" class="btn btn-primary btn-lg btn-block"> Run</button>
+            </div>
+          </div>
+
+
+    </div>
+      
+    
+
+
+
+    </div>
+
+  <!-- Ace Editor script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js" integrity="sha512-h1Qi0KjumrTpEh/QlBZ2iGjKd0zhY9Xh7MkFyO/PzBY/T6K2a6iZT6UZRp6Ewxp6qrxjKBDf+GdeIgjqlLp8qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    // Create Ace Editor instance
+    var editor = ace.edit("editor");
+    editor.setFontSize("18px");
+    
+    var defaultCode = {
+      "C": "#include<stdio.h>\n\nint main() {\n    // Write your code here\n    return 0;\n}",
+      "C++": "#include<iostream>\nusing namespace std;\n\nint main() {\n    // Write your code here\n    return 0;\n}",
+      "Java": "import java.util.*;\nimport java.io.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "Python": "# Write your code here \nprint('Hello world')",
+      "CS": "using System;\n\npublic class Main {\n    public static void Main() {\n        // Write your code here\n    }\n}",
+      "VB": "Module Main\n    Sub Main()\n        ' Write your code here\n    End Sub\nEnd Module"
+    };
+  
+    editor.setTheme("ace/theme/twilight"); // set editor theme
+    editor.session.setMode("ace/mode/c_cpp"); // set editor mode for C++
+  
+    // Change editor mode based on selected language
+    function changeEditorMode(mode) {
+      editor.session.setMode("ace/mode/" + mode); // set editor mode based on selected language
+    }
+  
+    // Add event listener to select element
+    var select = document.querySelector('select[name="lang"]');
+  
+    select.addEventListener('change', function() {
+      var selectedLang = this.value.toLowerCase();
+      editor.session.setValue(defaultCode[this.value]);
+  
+      if (selectedLang === "c++") {
+        selectedLang = "c_cpp"; // Ace Editor uses "c_cpp" for C++
+      }
+      changeEditorMode(selectedLang);
+    });
+  
+    // Set default code value
+    editor.session.setValue(defaultCode[select.value]);
+  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<script>
+   $(document).ready(function(){
+  $("#runButton").click(function(){
+    var code = editor.getValue();
+    var input = document.getElementById('input').value;
+    var isChecked = $('input[name="inputRadio"]:checked').val();
+    var language = $('select[name="lang"]').val();
+    console.log(code)
+    console.log(input)
+    console.log(isChecked)
+    console.log(language)
+    compiler = {
+      code:code,
+      input:input,
+      inputRadio:isChecked,
+      lang:language
+    }
+    const data = JSON.stringify(compiler)
+
+    $.ajax({
+        url: "http://localhost:9999/compilecode",
+        method: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function(response) {
+          $('#output').text(response.output)
+          
+        }
+    });
+  });
+});
+
+</script>
+<script>
+  $(document).ready(function(){
+    var questionid = '6408e3fc2e2a0e384c384bf4';
+    $.get('http://localhost:9999/course/getProblem/' + questionid)
+      .done(function(data) {
+        $('#editor1').append(data.problemStatement);
+        $('#editor2').append(data.inputFormat)
+        $('#editor3').append(data.outputFormat)
+        $('#editor4').append(data.constraints)
+        $('#editor5').append(data.sampleInputs)
+        $('#editor6').append(data.sampleOuputs)
+        $('#editor7').append(data.explanation)
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("Error getting problem:", textStatus, errorThrown);
+      });
+  });
+</script>
+
+<!-- Bootstrap JS -->
+</body>
+</html>
