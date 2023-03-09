@@ -25,6 +25,7 @@ const sectionSchema = new mongoose.Schema({
           type:String
         },
         optionA:{
+          
           type:String
         },
         optionB:{

@@ -127,29 +127,18 @@ function addCourse(req, res){
 }
 
 async function getCourse(req, res) {
-  const courseName = req.body.course_name;
+  const courseTitle = req.body.courseTitle;
   try{
-  let data=await courseCTRl.Course.findOne({ course_name: courseName })
+  let data=await courseCTRl.Course.findOne({ courseTitle: courseTitle})
     .populate({
       path: "sections",
-      populate: {
 
-        path: "moduleList.quiz",
-        model: "Quiz",
-      },
     })
     res.send(data);
 }
 catch (e) {
     console.log(e);
 }
-    // .exec((err, data) => {
-    //   if (err) {
-    //     res.status(500).send(err);
-    //   } else {
-    //     res.send(data);
-    //   }
-    // });
 }
 
 module.exports = {getProblem,addCourse,addCurriculum,problemcontent,getCourse}

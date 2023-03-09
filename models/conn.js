@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const url = 'mongodb+srv://TeamRocket:9997@project.sfwpshx.mongodb.net/LMS'
+const url = 'mongodb+srv://venkatesh_967:venky@cluster0.mnt4wfj.mongodb.net/capstoneLMS'
 
 mongoose.connect(url,  {
     useNewUrlParser: true,
