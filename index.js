@@ -24,11 +24,17 @@ const queriesroutes = require('./routes/queriesroute')
 const allUsersRoutes = require("./routes/allUserRoutes")
 const courseRoutes = require("./routes/courseRoutes")
 const quizRoutes = require('./routes/quizRoutes')
-
+const challengeRoutes = require('./routes/ctfRoutes')
+const badgeRoutes=require('./routes/badgeRoutes')
+const liveRoutes=require('./routes/liveRoutes')
 
 //instructors
 app.use('/a',allUsersRoutes)
 //compiler 
+app.use('/Addchallenge',challengeRoutes)
+app.use('/badge',badgeRoutes)
+
+app.use('/live',liveRoutes)
 
 app.use('/',compilerRoutes)
 //instructors

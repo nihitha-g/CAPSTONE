@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CTF Challenge Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="CTF.js"></script>
+  <script>
+   
+
+  </script>
+</head>
+<body id="challengelist"><div class="container">
+    <h1>CTF Challenge Page</h1>
+ 
+
+  <!-- Challenge details modal -->
+  <div id="challenge-details-modal" class="modal">
+    <div class="modal-content">
+      <h4 id="challenge-details-title"></h4>
+      <p id="challenge-details-description"></p>
+      <p id="challenge-details-points"></p> 
+      <p id="challenge-details-hint"></p>
+
+      <form id="challenge-details-form">
+        <div class="input-field">
+          <input id="flag" type="text" class="validate">
+          <label for="flag">Flag</label>
+        </div>
+        <button type="submit" id="submit-flag-btn" class="btn waves-effect waves-light">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+</body>
+<script src="CTF.js"></script>
+</html>
