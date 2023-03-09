@@ -46,6 +46,7 @@ $(document).ready(function () {
     var optionB = $('#addTopic input[name="optionB"]').val()
     var optionC = $('#addTopic input[name="optionC"]').val()
     var optionD = $('#addTopic input[name="optionD"]').val()
+    var correctOption = $('#addTopic select[name="correctOption"]').val()
 
     var inputObj = {
       moduleName: moduleName,
@@ -55,7 +56,8 @@ $(document).ready(function () {
       optionA: optionA,
       optionB: optionB,
       optionC: optionC,
-      optionD: optionD
+      optionD: optionD,
+      correctOption:correctOption
     };
     inputarray.push(inputObj);
     // Create the module HTML

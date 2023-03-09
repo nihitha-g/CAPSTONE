@@ -16,6 +16,7 @@ routes.get('/getProblem/:questionid',courseRoute.getProblem)
 routes.post('/savecourse',upload.fields([{ name: 'courseImage',maxCount:1},{ name:'courseVideo',maxCount:1}]),courseRoute.addCourse)
 routes.post('/:course_name',moduleRoute.getSection)
 routes.get('/course/:Instrutor_Email',moduleRoute.getInsCourse)
+routes.get('/gc',courseRoute.getCourse)
 // routes.post('/getcourse',moduleRoute.getcourse)
 
 module.exports = routes 

@@ -10,19 +10,38 @@ const sectionSchema = new mongoose.Schema({
     },
     moduleList: [
       {
-        module_name: {
+        moduleName: {
           type: String,
           required: true
         },
-        youtube_link: {
+        videoLink: {
           type: String,
           required: true
         },
-        quiz: [
-          {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Quiz'
-          }],
+        moduleDescription: {
+          type:String
+        },
+        questions:{
+          type:String
+        },
+        optionA:{
+          type:String
+        },
+        optionB:{
+          type:String
+        },
+        optionC:{
+          type:String
+
+        },
+        optionD:{
+          type:String
+
+        },
+        correctOption:{
+          type:String
+
+        }
       }
     ]
   });

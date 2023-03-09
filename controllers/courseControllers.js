@@ -4,7 +4,6 @@ const moduleCTRl = require("../models/section");
 const quizCTRl = require("../models/quize");
 //new
 async function addCurriculum(req,res){
-  console.log(req.body)
   let addSectionName = moduleCTRl.Section({
     sectionName:req.body.sections[0].sectionName,
     modulesList: []
@@ -41,18 +40,23 @@ async function addCurriculum(req,res){
       optionB:modules[i].optionB,
       optionC:modules[i].optionC,
       optionD:modules[i].optionD,
+      correctOption:modules[i].correctOption
     }
+    console.log("moduksd",req.body.sections[0].sectionName)
+    console.log("sddsfs",currentModule)
     let updateCourse = await moduleCTRl.Section.updateOne(
-      { sectionName:req.body.sectionName},
+      { sectionName:req.body.sections[0].sectionName},
       {
         $push:{
           moduleList:currentModule
         }
       }
     )
+    console.log("work")
+
   }
  
-  console.log("work")
+ 
 }
 
 function getProblem(req, res) {
@@ -122,4 +126,30 @@ function addCourse(req, res){
 
 }
 
-module.exports = {getProblem,addCourse,addCurriculum,problemcontent}
+async function getCourse(req, res) {
+  const courseName = req.body.course_name;
+  try{
+  let data=await courseCTRl.Course.findOne({ course_name: courseName })
+    .populate({
+      path: "sections",
+      populate: {
+
+        path: "moduleList.quiz",
+        model: "Quiz",
+      },
+    })
+    res.send(data);
+}
+catch (e) {
+    console.log(e);
+}
+    // .exec((err, data) => {
+    //   if (err) {
+    //     res.status(500).send(err);
+    //   } else {
+    //     res.send(data);
+    //   }
+    // });
+}
+
+module.exports = {getProblem,addCourse,addCurriculum,problemcontent,getCourse}
