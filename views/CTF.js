@@ -59,9 +59,10 @@ function get_req(){
                 let flag = document.querySelector('#flag').value;
                 if (flag === correct_flag) {
                     M.toast({html: 'Congratulations! Challenge solved!', classes: 'green'});
+                    userEmail:window.localStorage.getItem("k")
                    var data ={
                        
-                        userEmail: 'nihitha@gmail.com',
+                        userEmail: userEmail,
                         challengeId: data[0]._id,
                         courseId:data[0].category
                       }

@@ -12,7 +12,41 @@ const user = {
         type:String,
     },
     coursesEnrolled: [{
-        type: Object,
+        course: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Course',
+          required: true
+        },
+        modulePoints: {
+          completedModules: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Module'
+          }],
+          totalPoints: {
+            type: Number,
+            default: 0
+          }
+        },
+        quizPoints: {
+          completedQuizzes: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Quiz'
+          }],
+          totalPoints: {
+            type: Number,
+            default: 0
+          }
+        },
+        challengePoints: {
+          completedChallenges: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Challenge'
+          }],
+          totalPoints: {
+            type: Number,
+            default: 0
+          }
+        }
       }],
     email:{
         type:String
@@ -37,7 +71,17 @@ const user = {
     },
     Status:{
         type: String,
-    }
+    },
+    earnedBadges: [{
+        name: {
+          type: String,
+          required: true
+        },
+        image: {
+          type: String,
+          required: true
+        }
+      }],
 }
 
 let User = mongoose.model('ALL_USERS', user,'ALL_USERS')

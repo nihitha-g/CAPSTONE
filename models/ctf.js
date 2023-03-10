@@ -9,7 +9,8 @@ const mongoose = require('./conn').mongoose
 const ChallengeSchema = {
   title: { type: String, required: true, maxlength: 100 },
   description: { type: String, required: true },
-  category: { type: String, required: true, enum: ['Web', 'Reverse Engineering', 'Crypto', 'Forensics', 'Misc'] },
+
+  category : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
   points: { type: Number, required: true, min: 0 },
   flag: { type: String, required: true },
   hint: { type: String },

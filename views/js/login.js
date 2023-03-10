@@ -17,6 +17,7 @@ window.onload=function(){
     console.log(imgFile)
     const formdata = new FormData()
     formdata.append('userName',userName)
+    formdata.append('password',password)
     formdata.append('email',email)
     formdata.append('phone',phone)
     formdata.append('address',address)

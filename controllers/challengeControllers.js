@@ -42,7 +42,8 @@ function getChallenge1(req,res){
         }
     })
 }
-function createChallenge(req, res, next) {
+function createChallenge(req, res) {
+  console.log(req.body)
   const challenge = new ChallengeCTRL.Challenge({
     title: req.body.title,
     description: req.body.description,

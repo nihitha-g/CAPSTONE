@@ -178,9 +178,23 @@ function addCourse(req, res){
     })
 
 }
-
 async function getCourse(req, res) {
-  const courseTitle = req.body.courseTitle;
+ 
+  try{
+  let data=await courseCTRl.Course.find()
+    .populate({
+      path: "sections",
+
+    })
+    res.send(data);
+}
+catch (e) {
+    console.log(e);
+}
+}
+
+async function getCourse1(req, res) {
+  const courseTitle = req.params.courseTitle;
   try{
   let data=await courseCTRl.Course.findOne({ courseTitle: courseTitle})
     .populate({
@@ -194,4 +208,4 @@ catch (e) {
 }
 }
 
-module.exports = {getProblem,addCourse,addCurriculum,problemcontent,getCourse}
+module.exports = {getProblem,addCourse,addCurriculum,problemcontent,getCourse,getCourse1}
