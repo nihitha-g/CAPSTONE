@@ -8,6 +8,30 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
+    
+            <title>Add Meeting Details</title>
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <!-- Custom CSS -->
+            <style>
+              body {
+                background-color: #f8f9fa;
+              }
+              .form-container {
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              }
+              h1 {
+                font-size: 36px;
+                margin-bottom: 30px;
+                text-align: center;
+              }
+              label {
+                font-weight: bold;
+              }
+            </style>
         <title>Eduport - LMS, Education and Course Theme</title>
         <!-- Meta Tags -->
         <meta charset="utf-8">
@@ -30,6 +54,8 @@
     
         <!-- Theme CSS -->
         <link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     
     </head>
     
@@ -142,56 +168,45 @@
                     </nav>
                     <!-- Responsive offcanvas body END -->
                 </div>
+                <div class="col-xl-9">
+                    <div class="form-container">
+                        <h1>Add Meeting Details</h1>
+                        <form id="meeting-form" action="/schedule-meeting" method="post">
+                          <div class="form-group">
+                            <label for="meeting-title">Meeting Title:</label>
+                            <input type="text" class="form-control" id="meeting-title" name="meeting-title" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="meeting-date">Meeting Date:</label>
+                            <input type="date" class="form-control" id="meeting-date" name="meeting-date" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="meeting-time">Meeting Time:</label>
+                            <input type="time" class="form-control" id="meeting-time" name="meeting-time" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="meeting-duration">Meeting Duration:</label>
+                            <input type="number" class="form-control" id="meeting-duration" name="meeting-duration" required> minutes
+                          </div>
+                          <div class="form-group">
+                            <label for="meeting-link">Meeting Link:</label>
+                            <input type="text" class="form-control" id="meeting-link" name="meeting-link" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-block">Schedule Meeting</button>
+                        </form>
+                      </div>
+                </div>
                 <!-- Right sidebar END -->
     
                 <!-- Main content START -->
-                </html><!-- Main content START -->
+                <!-- Main content START -->
 
 
 
-    <div class="col-xl-9">
-        <div class="container">
-            <h1 class="mt-4 mb-4">GO LIVE</h1>
-      
-            <form action="/challenge/create" id="challenge-form" method="post">
-             
-              <div class="mb-3">
-                <label for="description" class="form-label">ZOOM LINK</label>
-                <textarea name="description" id="description" class="form-control" required></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="category" class="form-label">COURSE_NAME:</label>
-                <select name="category" id="category" class="form-select" required>
-                  <option value="">-- Select Category --</option>
-                  <option value="Web">Web</option>
-                  <option value="Reverse Engineering">Reverse Engineering</option>
-                  <option value="Crypto">Crypto</option>
-                  <option value="Forensics">Forensics</option>
-                  <option value="Misc">Misc</option>
-                </select>
-              </div>
-              <!-- <div class="mb-3">
-                <label for="points" class="form-label">Points:</label>
-                <input type="number" name="points" id="points" class="form-control" min="0" required>
-              </div>
-              <div class="mb-3">
-                <label for="flag" class="form-label">Flag:</label>
-                <input type="text" name="flag" id="flag" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="hint" class="form-label">Hint:</label>
-                <textarea name="hint" id="hint" class="form-control"></textarea>
-              </div>
-              <div class="d-grid gap-2"> -->
-                <button type="submit" class="btn btn-primary">TAKE CLASS</button>
-              </div>
-            </form>
-          </div>
-      
-                  
+                
                       <!-- Include Bootstrap JS -->
                    
-                      <script src="live.js"></script>
+                      <script src="./assets/js/live.js"></script>
                         <!-- Profile banner END -->
     
              
@@ -205,20 +220,7 @@
                     
     
                                     <!-- Pagination -->
-                                    <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-3">
-                                        <!-- Content -->
-                                        <p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-                                        <!-- Pagination -->
-                                        <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-                                            <ul class="pagination pagination-sm pagination-primary-soft mb-0 pb-0">
-                                                <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-                                                <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                   
                                 </div>
                                 <!-- Card body START -->
                             </div>

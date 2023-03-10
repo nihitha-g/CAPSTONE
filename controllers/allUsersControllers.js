@@ -2,6 +2,7 @@ const express = require('express')
 const UserCTRl = require('../models/allUsers')
 
 function addUser(req, res){
+    console.log(req.body)
     let addUserData = UserCTRl.User({
         imgFile:req.file.location,
         userName:req.body.userName,

@@ -93,7 +93,7 @@ async function updateChallengePoints(req, res) {
   res.status(500).json({ message: 'Error updating challenge points', error: error.message });
 }
 }
-  
+
 
 async function awardBadge(req, res){
     const userEmail = req.body.userEmail;
@@ -111,17 +111,17 @@ async function awardBadge(req, res){
         if (user.points >= 500 && user.points < 800) {
             user.earnedBadges.push({
                 name: "Beginner",
-                image: "/path/to/beginner-badge.png"
+                image: req.files.Beginner[0].location
             });
         } else if (user.points >= 800 && user.points < 1000) {
             user.earnedBadges.push({
                 name: "Intermediate",
-                image: "/path/to/intermediate-badge.png"
+                image: req.files.Intermediate[0].location
             });
         } else if (user.points >= 1000) {
             user.earnedBadges.push({
                 name: "Expert",
-                image: "/path/to/expert-badge.png"
+                image: req.files.Expert[0].location
             });
         }
 

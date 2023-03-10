@@ -1,4 +1,25 @@
 const InstructorCTRL = require('../models/InstrictorModel')
+const UserCTRl = require('../models/allUsers')
+
+
+function becomeInstructor(req,res) {
+    const userDetail = UserCTRl.User.find({email:req.body.email},(err,result) =>{
+        if(err) throw err
+        else{
+            console.log(result)
+            UserCTRl.User.updateOne({email:req.body.email},
+                {$set:
+                {isInstructor:"pending",Resume:req.file.location,addSummary:req.body.addSummary}},(err,data) =>{
+                    if(err) throw err
+                    else{
+                        res.send(data)
+                        console.log(data)
+                    }
+                }
+                )
+        }
+    })
+  }
 
 function InstructorRegistrationController(req, res) {
     // console.log(req.body)
@@ -28,4 +49,4 @@ function instructordata(req, res) {
         return res.json(data) }) 
     }
 
-module.exports = { InstructorRegistrationController,instructordata }
+module.exports = {  becomeInstructor,InstructorRegistrationController,instructordata }

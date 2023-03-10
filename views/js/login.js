@@ -22,6 +22,7 @@ window.onload=function(){
     formdata.append('address',address)
     formdata.append('role','student')
     formdata.append('imgFile',imgFile)
+    formdata.append('password',password)
     for(let pair of formdata.entries()){
       console.log(pair[0]+"-"+pair[1])
     }
@@ -53,7 +54,7 @@ window.onload=function(){
       password:password
     }
     if(udl.email=="admin@gmail.com" && udl.password=="admin"){
-      window.location.href="../admin/index.html";
+      window.location.href="./admin-dashboard.html";
     }else{
     let login = JSON.stringify(udl);
     $.ajax({

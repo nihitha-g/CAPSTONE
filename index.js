@@ -5,7 +5,7 @@ const cors = require('cors')
 app.use(express.json())
 app.use(cors())
 const path = require('path')
-
+mongoose.set('strictQuery', false);
 app.use(express.static(path.join(__dirname,'views')))
 
 const compilerRoutes = require('./routes/compiler')
@@ -33,7 +33,6 @@ app.use('/a',allUsersRoutes)
 //compiler 
 app.use('/Addchallenge',challengeRoutes)
 app.use('/badge',badgeRoutes)
-
 app.use('/live',liveRoutes)
 
 app.use('/',compilerRoutes)
@@ -43,6 +42,9 @@ app.use('/getInstructors',admin_instruct_info)
 app.use('/getInstructorInfo',admin_instruct_info)
 app.use('/Instructor',InstructorRoutesReg)
 app.use('/get_instructors_data',InstructorRoutes)
+
+//instructor new
+app.use('/instructor',InstructorRoutes)
 
 
 app.use('/courseDetails',courseRoutes)

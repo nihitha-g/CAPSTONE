@@ -1,22 +1,31 @@
-
 const db = require('./conn').db
 const mongoose = require('./conn').mongoose
 
-const LiveSchema = {
-    link: {
-      type: String,
-      required: true
-    },
-  
-    course_name:      {
-        type: String,
-        required: true
-      },
-    instrutor_email:{
-      type: String
-    },
-   
-  };
-  
-  let Live = mongoose.model('Live', LiveSchema,'Live')
+
+
+const liveSchema = {
+  title: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    required: true
+  },
+  time: {
+    type: String,
+    required: true
+  },
+  duration: {
+    type: Number,
+    required: true
+  },
+  link: {
+    type: String,
+    required: true
+  }
+};
+
+const Live= mongoose.model('Live', liveSchema);
+
 module.exports = {Live}

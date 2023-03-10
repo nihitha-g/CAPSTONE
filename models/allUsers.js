@@ -29,13 +29,10 @@ const user = {
     isInstructor:{
         type:String
     },
-    Message:{
+    addSummary:{
         type:String
     },
-    File:{
-        type:String
-    },
-    Linked:{
+    Resume:{
         type:String
     },
     Status:{
