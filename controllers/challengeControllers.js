@@ -1,51 +1,32 @@
 const express = require('express')
 const ChallengeCTRL = require('../models/ctf');
 const UserCTRl = require('../models/allUsers')
+const courseCTRL = require("../models/courses");
 
 
-
-// Display Challenge create form on GET.
-// exports.challenge_create_get = function(req, res) {
-//   res.render('challenge_form', { title: 'Create Challenge' });
-// };
-
-// Handle Challenge create on POST.
-
-async function createChallenge(req, res) {
-  console.log(req.body);
-
-  let courseId = await courseCTRL.Course.findOne({courseTitle: "python"}, {_id: 1});
-  console.log("Course Id:", courseId);
-
-  let challenge = new ChallengeCTRL.Challenge({
-    category: [courseId],
-    title: req.body.title,
-    description: req.body.description,
-    flag: req.body.flag,
-    points: req.body.points,
-    hint: req.body.hint
-  });
-
-  challenge.save((err, result) => {
-    if (err) {
-      console.log(err);
+async function createChallenge(req, res) 
+{ console.log(req.body); 
+  let courseId = await courseCTRL.Course.findOne({ courseTitle: "python" }, { _id: 1 }); 
+  console.log("Course Id:", courseId); 
+  let challenge = new ChallengeCTRL.Challenge({ category: courseId , title: req.body.title, description: req.body.description, flag: req.body.flag, points: req.body.points, hint: req.body.hint }); 
+  challenge.save((err, result) => { 
+    if (err) { console.log(err); 
       res.status(500).send('Error creating challenge');
+     } else {
+       console.log(result);
+        res.status(200).send('Challenge created'); 
+      } }); };
+
+
+
+function getChallenge(req, res) {
+  ChallengeCTRL.Challenge.find({}, (err, docs) => {
+    if (err) {
+      console.log(err)
     } else {
-      console.log(result);
-      res.status(200).send('Challenge created');
+      res.send(docs)
     }
-  });
-};
-
-
-function getChallenge(req,res){
-    ChallengeCTRL.Challenge.find({},(err,docs) =>{
-        if(err){
-            console.log(err)
-        }else{
-            res.send(docs)
-        }
-    })
+  })
 }
 // function getCourseController(req,res){
 //     var Course_Name = req.params.Course_Name;
@@ -58,17 +39,19 @@ function getChallenge(req,res){
 //     })
 // }
 
-function getChallenge1(req,res){
+function getChallenge1(req, res) {
 
-    var title=req.params.title
-    ChallengeCTRL.Challenge.find({title:title},(err,docs) =>{
-        if(err){
-            console.log(err)
-        }else{
-            res.send(docs)
-        }
-    })
+  var title = req.params.title
+  ChallengeCTRL.Challenge.find({ title: title }, (err, docs) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(docs)
+    }
+  })
 }
+
+
 
 async function submitFlag(req, res) {
   const title = req.body.title;
@@ -98,7 +81,7 @@ async function submitFlag(req, res) {
       console.log(user.points)
       console.log(challenge.points)
       user.points += challenge.points;
-      
+
       await user.save();
       // Return success response
       return res.status(200).json({ message: 'Flag submitted successfully!' });
@@ -112,8 +95,8 @@ async function submitFlag(req, res) {
   }
 }
 
-  
 
-module.exports = { createChallenge,getChallenge ,getChallenge1,submitFlag};
+
+module.exports = { createChallenge, getChallenge, getChallenge1, submitFlag };
 
 

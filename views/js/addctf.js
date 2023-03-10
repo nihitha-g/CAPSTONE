@@ -1,34 +1,43 @@
-
+$.get('http://127.0.0.1:9999/course/gc', function (categories) {
+  // Get reference to category select element
+  const categorySelect = $('#category');     // Remove existing options
+  categorySelect.empty();     // Add default option
+  categorySelect.append($('<option>').val('').text('-- Select Category --'));     // Add each category as an option
+  categories.forEach(function (category) {
+    categorySelect.append($('<option>').val(category.courseTitle).text(category.courseTitle));
+  });
+});
 $('#challenge-form').submit(function (e) {
   console.log("1")
   e.preventDefault();
   console.log("2")
   var formData = {
-            title: $('#title').val(),
-            description: $('#description').val(),
-            category: $('#category').val(),
-            flag: $('#flag').val(),
-            points: $('#points').val(),
-            hint: $('#hint').val(),
-            solvedBy: []
-          };
-          console.log("3")
-         var formDat=JSON.stringify(formData)
-          console.log(formDat)
-          $.ajax({
-              method: "POST",
-              contentType: "application/json",
-              data: formDat,
-              url: "http://127.0.0.1:9999/Addchallenge/create",
-              success: (result) => {
-                alert("sucessfully added");
-              },
-              error: (result) => {
-                alert(result);
-              },
-            });
+    title: $('#title').val(),
+    description: $('#description').val(),
+    category: $('#category').val(),
+    flag: $('#flag').val(),
+    points: $('#points').val(),
+    hint: $('#hint').val(),
+    solvedBy: []
+  };
+  console.log("3")
+  var formDat = JSON.stringify(formData)
+  console.log(formDat)
+  $.ajax({
+    method: "POST",
+    contentType: "application/json",
+    data: formDat,
+    url: "http://127.0.0.1:9999/Addchallenge/create",
+    success: (result) => {
+      alert("sucessfully added");
+    },
+    error: (result) => {
+      alert(result);
+    },
+  });
 
 });
+
 
 // function addChallenge() {
 //     // Get the form data
