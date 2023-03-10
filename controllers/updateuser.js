@@ -67,8 +67,8 @@ UserCTRl.User.findOne({email:email},(err,user) =>{
     const alreadyEnrolled = user.coursesEnrolled.includes(courseName);
     if (alreadyEnrolled) return res.status(400).send({ error: 'You have already enrolled in this course' });
     user.coursesEnrolled.push({
-      name: courseName,
-      modules:[]
+      course: courseName,
+   
     });
     
 

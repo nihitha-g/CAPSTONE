@@ -6,6 +6,7 @@ const courseCTRl = require('../models/courses')
 
 
 async function updateModulePoints(req, res) {
+  console.log(req.body)
   try {
     const userEmail= req.body.userEmail;
     const courseId = req.body.courseId;
