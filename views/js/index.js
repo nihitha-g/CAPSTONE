@@ -7,6 +7,31 @@
           document.getElementById("user").innerHTML="Hello "+localStorage.getItem("k")+"!";
       }
   }
+  function fun3(){
+    console.log("Hi")
+    //console.log(window.localStorage.getItem("k"))
+    const email=window.localStorage.getItem("k")
+    // bhi = JSON.stringify({Email:window.localStorage.getItem("k")})
+    // console.log(bhi)
+    $.ajax({
+        "method": "GET", "url": "http://localhost:9999/userProfile/"+email,
+    "success": (data) => {
+          console.log(data)
+          if(data[0].role=='student'){
+            window.location.href="student-dashboard.html"
+
+          }
+          else if(data[0].role=='instructor'){
+            window.location.href="instructor-dashboard.html"
+          }
+      //alert("Successfully registered")
+     
+      
+  }, error:(e) => {alert(e)}
+    });
+   
+  
+}
   
 function fun2(){
     console.log("Hi")

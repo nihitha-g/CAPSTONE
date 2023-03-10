@@ -1,24 +1,25 @@
 
 
-const courseTitle="python"
+const courseTitle=localStorage.getItem('courseTitle')
+
 console.log(courseTitle)
 $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) {
     console.log(course)
-    localStorage.setItem('course_id',course[0]._id)
-    localStorage.setItem('module_id',course[0].sections[0].moduleList[0]._id)
+    localStorage.setItem('course_id',course._id) 
+    localStorage.setItem('module_id',course.sections[0].moduleList[0]._id)
   // Update badge
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
   '<div class="row py-5">' +
   '<div class="col-lg-8">' +
   // Badge
-  '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">' + course[0].category + '</h6>' +
+  '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">' + course.category + '</h6>' +
   // Title
-  '<h1>' + course[0].courseTitle  + '</h1>' +
-  '<button id="enroll-btn" type="button" class="btn btn-primary" onclick="enrol()" data-index="' + course[0]._id + '">Enroll Now</button>' +
+  '<h1>' + course.courseTitle  + '</h1>' +
+  '<button id="enroll-btn" type="button" class="btn btn-primary" onclick="enrol()" data-index="' + course._id + '">Enroll Now</button>' +
         '</div>' +
   // Description
-  '<p>' + course[0].courseShortDescription
+  '<p>' + course.courseShortDescription
   + '</p>' +'<section class="bg-light py-3">'+
   
 '</section>'
@@ -39,8 +40,8 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
 $('#one').append(sectionHtml);
 
 var sec2html=`
-<p class="mb-3">Welcome to the <strong> ${course[0].courseTitle}</strong></p>
-<p class="mb-3">to become a  expert with this <strong> ${course[0].courseDescription}</strong></p>
+<p class="mb-3">Welcome to the <strong> ${course.courseTitle}</strong></p>
+<p class="mb-3">to become a  expert with this <strong> ${course.courseDescription}</strong></p>
 <p class="mb-3">If you wish to find out the skills that should be covered in a basic digital marketing course syllabus in India or anywhere around the world, then reading this blog will help. Before we delve into the advanced <strong><a href="#" class="text-reset text-decoration-underline">digital marketing course</a></strong> syllabus, let’s look at the scope of digital marketing and what the future holds.</p>
 <p class="mb-0">We focus a great deal on the understanding of behavioral psychology and influence triggers which are crucial for becoming a well rounded Digital Marketer. We understand that theory is important to build a solid foundation, we understand that theory alone isn’t going to get the job done so that’s why this course is packed with practical hands-on examples that you can follow step by step.</p>`
 $('#two').append(sec2html)
@@ -49,8 +50,8 @@ console.log("hi")
 var sec3html=`<div class="accordion-item mb-3">
 <h6 class="accordion-header font-base" id="heading-1">
     <button class="accordion-button fw-bold rounded d-sm-flex d-inline-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-    ${course[0].sections[0].sectionName}
-        <span class="small ms-0 ms-sm-2">   ${course[0].sections.length}</span> 
+    ${course.sections.sectionName}
+        <span class="small ms-0 ms-sm-2">   ${course.sections.length}</span> 
     </button>
 </h6>
 <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
@@ -59,7 +60,7 @@ var sec3html=`<div class="accordion-item mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <div class="position-relative d-flex align-items-center">
             
-                <a href="${course[0].sections[0].moduleList[0].videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
+                <a href="${course.sections.moduleList[0].videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
                     <i class="fas fa-play me-0"></i>
                 </a>
                 <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px">${course[0].sections[0].moduleList[0].moduleName}</span>
@@ -89,37 +90,37 @@ var quizModal = `
 <h5 class="modal-title" id="quiz-modal-label">Quiz</h5>
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
-<div class="modal-body" id="${course[0].sections[0].moduleList[0].questions}">
+<div class="modal-body" id="${course.sections.moduleList.questions}">
 <h6>Question:</h6>
-<p id="quiz-question">${course[0].sections[0].moduleList[0].questions}</p>
+<p id="quiz-question">${course.sections.moduleList.questions}</p>
 <div class="form-check">
 <input class="form-check-input" name="question1" type="radio" name="quiz-radio" id="quiz-radio-1" value="1">
 <label class="form-check-label" for="quiz-radio-1">
-<span id="quiz-option-1">${course[0].sections[0].moduleList[0].optionA}</span>
+<span id="quiz-option-1">${course.sections.moduleList.optionA}</span>
 </label>
 </div>
 <div class="form-check">
 <input class="form-check-input"  name="question1" type="radio" name="quiz-radio" id="quiz-radio-2" value="2">
 <label class="form-check-label" for="quiz-radio-2">
-<span id="quiz-option-2">${course[0].sections[0].moduleList[0].optionB}</span>
+<span id="quiz-option-2">${course.sections.moduleList.optionB}</span>
 </label>
 </div>
 <div class="form-check">
 <input class="form-check-input"  name="question1" type="radio" name="quiz-radio" id="quiz-radio-3" value="3">
 <label class="form-check-label " for="quiz-radio-3"   >
-<span id="quiz-option-3">${course[0].sections[0].moduleList[0].optionC}</span>
+<span id="quiz-option-3">${course.sections.moduleList.optionC}</span>
 </label>
 </div>
 <div class="form-check">
 <input class="form-check-input"  name="question1" type="radio" name="quiz-radio" id="quiz-radio-4" value="4">
 <label class="form-check-label " for="quiz-radio-4"   >
-<span id="quiz-option-4">${course[0].sections[0].moduleList[0].optionD}</span>
+<span id="quiz-option-4">${course.sections.moduleList.optionD}</span>
 </label>
 </div>
 
   <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<button type="button" id="quiz-submit-button" onclick="submit('${course[0].sections[0].moduleList[0].questions}','${course[0].sections[0].moduleList[0].correctOption}')" class="btn btn-primary">Submit</button>
+<button type="button" id="quiz-submit-button" onclick="submit('${course.sections.moduleList.questions}','${course.sections.moduleList.correctOption}')" class="btn btn-primary">Submit</button>
 </div>
 </div>
 </div>

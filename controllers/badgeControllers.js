@@ -96,7 +96,7 @@ async function updateChallengePoints(req, res) {
 }
 
 
-async function awardBadge(req, res){
+async function awardBadge(req, res){1
     const userEmail = req.body.userEmail;
     console.log(userEmail)
 
