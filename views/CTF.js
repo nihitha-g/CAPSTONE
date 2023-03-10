@@ -41,6 +41,8 @@ function get_req(){
           // for example:
           console.log(data)
           console.log(data[0]._id)
+          const challengeId=window.localStorage.setItem('challengeId',data[0]._id)
+          const CourseId= window.localStorage.setItem('CourseId',data[0].category)
           const correct_flag= data[0].flag
           const title=data[0].title
         // localStorage.setItem('flag',correct_flag)
@@ -55,19 +57,25 @@ function get_req(){
             var instance = M.Modal.init(modal);
             instance.open();
             console.log(document.querySelector('#submit-flag-btn'))
-            document.querySelector('#submit-flag-btn').onclick = function() {
+            document.querySelector('#submit-flag-btn').onclick = function(event) {
+              event.preventDefault()
                 let flag = document.querySelector('#flag').value;
+                
                 if (flag === correct_flag) {
-                    M.toast({html: 'Congratulations! Challenge solved!', classes: 'green'});
-                    userEmail:window.localStorage.getItem("k")
+
+                    // M.toast({html: 'Congratulations! Challenge solved!', classes: 'green'});
+                  
+                   const userEmail=window.localStorage.getItem("k")
+                   const challengeId=window.localStorage.getItem("challengeId") 
+                   const courseId = window.localStorage.getItem("CourseId") 
                    var data ={
                        
                         userEmail: userEmail,
-                        challengeId: data[0]._id,
-                        courseId:data[0].category
+                        challengeId: challengeId,
+                        courseId : courseId
                       }
                       console.log(data)
-                      dat=JSON.stringify(data)
+                    const  dat=JSON.stringify(data)
                     $.ajax({
                         method: "POST",
                          contentType: "application/json",
@@ -77,6 +85,7 @@ function get_req(){
                         
                         success: function(response) {
                           console.log(response);
+                          alert('Congratulations! Challenge solved!')
                         },
                         error: function(xhr, status, error) {
                           console.error(error);
