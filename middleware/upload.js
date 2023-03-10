@@ -29,6 +29,7 @@ const upload = multer({
           path.parse(file.originalname).name +
           path.extname(file.originalname)
       );
+  
     },
   }),
 });

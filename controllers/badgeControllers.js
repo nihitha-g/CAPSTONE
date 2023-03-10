@@ -214,6 +214,7 @@ if (totalPoints >= 50 && totalPoints < 80) {
 
     }
 
+<<<<<<< HEAD
     // Save the user's updated profile to the database
     await user.save();
     res.status(200).json(user);
@@ -321,6 +322,46 @@ async function getUserBadges(req, res) {
         courseId: courseId,
         courseName: courseName,
       });
+=======
+async function awardBadge(req, res){1
+    const userEmail = req.body.userEmail;
+    console.log(userEmail)
+
+    try {
+        // Find the user in the database
+        const user = await UserCTRl.User.findOne({ email: userEmail });
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        // Add badges to user's earned badges array based on their points
+        if (user.points >= 500 && user.points < 800) {
+            user.earnedBadges.push({
+                name: "Beginner",
+                image: req.files.Beginner[0].location
+            });
+        } else if (user.points >= 800 && user.points < 1000) {
+            user.earnedBadges.push({
+                name: "Intermediate",
+                image: req.files.Intermediate[0].location
+            });
+        } else if (user.points >= 1000) {
+            user.earnedBadges.push({
+                name: "Expert",
+                image: req.files.Expert[0].location
+            });
+        }
+
+        // Save the user's updated profile to the database
+        await user.save();
+        res.status(500).send(user);
+        // res.redirect('/profile');
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating user profile');
+>>>>>>> a623e5b7bb18a3337a11dec0a586ecc118671099
     }
 
     res.status(200).json(badges);

@@ -47,6 +47,7 @@ $(document).ready(function () {
     var optionC = $('#addTopic input[name="optionC"]').val()
     var optionD = $('#addTopic input[name="optionD"]').val()
     var correctOption = $('#addTopic select[name="correctOption"]').val()
+    var Instrutor_Email=window.localStorage.getItem('k')
 
     var inputObj = {
       moduleName: moduleName,
@@ -57,7 +58,8 @@ $(document).ready(function () {
       optionB: optionB,
       optionC: optionC,
       optionD: optionD,
-      correctOption:correctOption
+      correctOption:correctOption,
+      // Instrutor_Email:Instrutor_Email
     };
     inputarray.push(inputObj);
     // Create the module HTML
@@ -122,6 +124,7 @@ $(document).ready(function () {
     courseTitle = window.localStorage.getItem('courseTitle')
     var data = {
       courseTitle:courseTitle,
+      Instrutor_Email:Instrutor_Email,
       sections:sectiondata
     }
   let sectiontotal = JSON.stringify(data);

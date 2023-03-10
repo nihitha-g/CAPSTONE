@@ -17,7 +17,7 @@ routes.post('/savecourse',upload.fields([{ name: 'courseImage',maxCount:1},{ nam
 routes.post('/:course_name',moduleRoute.getSection)
 routes.get('/course/:Instrutor_Email',moduleRoute.getInsCourse)
 routes.get('/gc',courseRoute.getCourse)
-routes.get('/gc1/:courseTitle',courseRoute.getCourse)
+routes.get('/gc1/:courseTitle',courseRoute.getCourse1)
 
 // routes.post('/getcourse',moduleRoute.getcourse)
 

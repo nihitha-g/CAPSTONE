@@ -37,6 +37,8 @@ $.get("http://127.0.0.1:9999/courseDetails/gc", function(data) {
     // Add a click event listener to each course card
     $(".course-card").click(function() {
         var courseTitle = $(this).data("course");
+       window.localStorage.setItem('courseTitle',courseTitle)
         window.location.href = "course-detail.html?title=" + courseTitle;
+
     });
 });

@@ -7,7 +7,6 @@ window.onload=function(){
     if(localStorage.getItem("usd")==null){
       localStorage.setItem("usd",JSON.stringify([]))
     }
-    var usda=JSON.parse(localStorage.getItem("usd"));
     var userName=$("#userName").val();
     var email=$("#email").val();
     var phone=$("#phone").val();
@@ -23,7 +22,6 @@ window.onload=function(){
     formdata.append('address',address)
     formdata.append('role','student')
     formdata.append('imgFile',imgFile)
-    formdata.append('password',password)
     for(let pair of formdata.entries()){
       console.log(pair[0]+"-"+pair[1])
     }

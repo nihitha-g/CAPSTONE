@@ -164,7 +164,8 @@ function addCourse(req, res){
         courseTitle:req.body.courseTitle,
         courseUrl:req.body.courseUrl,
         courseDescription:req.body.courseDescription,
-        courseShortDescription:req.body.courseShortDescription
+        courseShortDescription:req.body.courseShortDescription,
+        Instrutor_Email:req.body.Instrutor_Email
     })
     console.log(addCourseData)
     addCourseData.save((err,result)=>{
@@ -198,7 +199,7 @@ async function getCourse1(req, res) {
   try{
   let data=await courseCTRl.Course.findOne({ courseTitle: courseTitle})
     .populate({
-      path: "sections",
+      path: "sections"
 
     })
     res.send(data);

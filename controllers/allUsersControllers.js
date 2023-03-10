@@ -10,11 +10,8 @@ function addUser(req, res){
         email:req.body.email,
         phone:req.body.phone,
         address:req.body.address,
-        coursesEnrolled:req.body.coursesEnrolled,
         role:req.body.role
     })
-
-
     console.log(addUserData)   
     addUserData.save((err,result)=>{
         if(err){
