@@ -11,6 +11,33 @@ const UserCTRl = require('../models/allUsers')
 
 // Handle Challenge create on POST.
 
+async function createChallenge(req, res) {
+  console.log(req.body);
+
+  let courseId = await courseCTRL.Course.findOne({courseTitle: "python"}, {_id: 1});
+  console.log("Course Id:", courseId);
+
+  let challenge = new ChallengeCTRL.Challenge({
+    category: [courseId],
+    title: req.body.title,
+    description: req.body.description,
+    flag: req.body.flag,
+    points: req.body.points,
+    hint: req.body.hint
+  });
+
+  challenge.save((err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Error creating challenge');
+    } else {
+      console.log(result);
+      res.status(200).send('Challenge created');
+    }
+  });
+};
+
+
 function getChallenge(req,res){
     ChallengeCTRL.Challenge.find({},(err,docs) =>{
         if(err){
@@ -42,29 +69,6 @@ function getChallenge1(req,res){
         }
     })
 }
-function createChallenge(req, res) {
-  console.log(req.body)
-  const challenge = new ChallengeCTRL.Challenge({
-    title: req.body.title,
-    description: req.body.description,
-    category: req.body.category,
-    points: req.body.points,
-    flag: req.body.flag,
-    hint: req.body.hint
-  });
-
-  challenge.save((err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send('Error creating challenge');
-    } else {
-      console.log(result);
-      res.status(200).send('Challenge created');
-    }
-  });
-}
-
-
 
 async function submitFlag(req, res) {
   const title = req.body.title;
