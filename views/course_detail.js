@@ -4,23 +4,18 @@ const courseTitle=localStorage.getItem('courseTitle')
 
 console.log(courseTitle)
 $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) {
+  
     console.log(course)
     localStorage.setItem('course_id',course._id) 
     localStorage.setItem('module_id',course.section)
-   
-  // Update badge
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
   '<div class="row py-5">' +
   '<div class="col-lg-8">' +
   '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">COURSE</h6>' +
-  // Badge
-  '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">' + course.category + '</h6>' +
-  // Title
   '<h1>' + course.courseTitle  + '</h1>' +
   '<button id="enroll-btn" type="button" class="btn btn-primary" onclick="enrol()" data-index="' + course._id + '">Enroll Now</button>' +
         '</div>' +
-  // Description
   '<p>' + course.courseShortDescription
 + '</p>' 
 
@@ -28,6 +23,10 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
 
 // Append the section to the DOM
 $('#one').append(sectionHtml);
+
+const enrollButton = document.getElementById('enroll-btn');
+console.log(enrollButton)
+a()
 
 var sec2html=`
 <p class="mb-3">Welcome to the <strong> ${course.courseTitle}</strong></p>
