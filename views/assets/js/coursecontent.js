@@ -26,6 +26,7 @@ $(document).ready(function() {
   
         // Get the contents of the Quill editor
         const courseDescription = editor.root.innerHTML;
+        
 
         // Do something with the form values
         console.log(courseTitle,
@@ -44,6 +45,7 @@ $(document).ready(function() {
           formData.append('courseDescription',courseDescription)
           formData.append('courseImage', courseImage);
           formData.append('courseVideo', courseVideo);
+          formData.append('Instrutor_Email',window.localStorage.getItem('k'))
       
           for(let pair of formData.entries()){
             console.log(pair[0] + "-" + pair[1])

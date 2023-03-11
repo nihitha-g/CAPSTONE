@@ -21,7 +21,7 @@
             window.location.href="student-dashboard.html"
 
           }
-          else if(data[0].role=='instructor'){
+          else if(data[0].role=='Instructor'){
             window.location.href="instructor-dashboard.html"
           }
       //alert("Successfully registered")

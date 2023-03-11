@@ -48,7 +48,7 @@ $(document).ready(function () {
     var optionD = $('#addTopic input[name="optionD"]').val()
     var correctOption = $('#addTopic select[name="correctOption"]').val()
     var Instrutor_Email=window.localStorage.getItem('k')
-
+    var roll = window.localStorage.getItem('ROLL')
     var inputObj = {
       moduleName: moduleName,
       videoLink: videoLink,
@@ -122,10 +122,10 @@ $(document).ready(function () {
     });
     console.log(sectiondata);
     courseTitle = window.localStorage.getItem('courseTitle')
+    
     var data = {
       courseTitle:courseTitle,
-      Instrutor_Email:Instrutor_Email,
-      sections:sectiondata
+      sections:sectiondata,
     }
   let sectiontotal = JSON.stringify(data);
     console.log(sectiontotal)
@@ -134,7 +134,6 @@ $(document).ready(function () {
       contentType: 'application/json',
       data:sectiontotal,
       url:'http://localhost:9999/course/Curriculum',
-
       success:function(result){
         alert("data saved successsfully")
       },
@@ -149,12 +148,4 @@ $(document).ready(function () {
 })
 
 
-
-
-
-
-
-      
-
-      
  

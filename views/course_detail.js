@@ -4,23 +4,27 @@ const courseTitle=localStorage.getItem('courseTitle')
 
 console.log(courseTitle)
 $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) {
-  
     console.log(course)
     localStorage.setItem('course_id',course._id) 
-    localStorage.setItem('module_id',course.section[0])
+    localStorage.setItem('module_id',course.sections[0].moduleList[0]._id)
+  // Update badge
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
   '<div class="row py-5">' +
   '<div class="col-lg-8">' +
+  // Badge
   '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">' + course.category + '</h6>' +
+  // Title
   '<h1>' + course.courseTitle  + '</h1>' +
   '<button id="enroll-btn" type="button" class="btn btn-primary" onclick="enrol()" data-index="' + course._id + '">Enroll Now</button>' +
         '</div>' +
+  // Description
   '<p>' + course.courseShortDescription
-+ '</p>' +'<section class="bg-light py-3">'+
-'</section>' +
-'<ul class="list-inline mb-0">' +
-
+  + '</p>' +'<section class="bg-light py-3">'+
+  
+'</section>'
+  
+  '<ul class="list-inline mb-0">' +
   '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-star text-warning me-2"></i>' + course.rating + '</li>' +
   '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate text-orange me-2"></i>' + course.enrolled + '</li>' +
   '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-signal text-success me-2"></i>' + course.level + '</li>' +
@@ -34,6 +38,9 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
 
 // Append the section to the DOM
 $('#one').append(sectionHtml);
+const enrollButton = document.getElementById('enroll-btn');
+console.log(enrollButton)
+a()
 
 var sec2html=`
 <p class="mb-3">Welcome to the <strong> ${course.courseTitle}</strong></p>
@@ -43,39 +50,64 @@ var sec2html=`
 $('#two').append(sec2html)
 console.log("hi")
 
-var sec3html=`<div class="accordion-item mb-3">
-<h6 class="accordion-header font-base" id="heading-1">
-    <button class="accordion-button fw-bold rounded d-sm-flex d-inline-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-    ${course.sections.sectionName}
-        <span class="small ms-0 ms-sm-2">   ${course.sections.length}</span> 
-    </button>
-</h6>
-<div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
-    <div class="accordion-body mt-3">
-       
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="position-relative d-flex align-items-center">
-            
-                <a href="${course.sections.moduleList[0].videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
-                    <i class="fas fa-play me-0"></i>
-                </a>
-                <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px">${course[0].sections[0].moduleList[0].moduleName}</span>
-            </div>
-            <div>
-            <button type="button" class="btn btn-success btn-sm" id="mark-completed">Completed</button>
-        </div>
-            <p class="mb-0">2m 10s</p>
-            
-        </div>
-        <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#quiz-modal">
-        Take Quiz
-        </button>
-        <hr>
-        </div>
-        </div>
-</div>`;
+for (let i = 0; i < course.sections.length; i++) {
+  const section = course.sections[i];
+  let secHtml = `
+    <div class="card mb-4">
+      <div class="card-header">${section.sectionName}</div>
+      <div class="card-body">
+  `;
 
-$('#three').append(sec3html);
+  for (let j = 0; j < section.moduleList.length; j++) {
+    const module = section.moduleList[j];
+
+    let moduleHtml = `
+      <div class="position-relative d-flex align-items-center">
+        <a href="${module.videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
+          <i class="fas fa-play me-0"></i>
+        </a>
+        
+        <div class="ms-2 mb-0 h6 fw-light">
+          ${module.moduleName}
+        </div>
+        </div>
+        <button type="button" class="btn btn-success btn-sm ms-auto" id="mark-completed">Completed</button>
+        <button type="button" class="btn btn-primary ms-2 btn-sm" data-bs-toggle="modal" data-bs-target="#quiz-modal-${i}-${j}">
+          Take Quiz
+        </button>
+    
+
+      <div class="modal fade" id="quiz-modal-${i}-${j}" tabindex="-1" aria-labelledby="quiz-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="quiz-modal-label">${module.moduleName} Quiz</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- add quiz questions and options here -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+    `;
+    secHtml += moduleHtml;
+  }
+
+  // add closing divs for the section
+  secHtml += `
+      </div>
+    </div>
+  `;
+  $("#three").append(secHtml);
+}
+
+
 
 // Quiz Modal
 var quizModal = `
@@ -122,10 +154,7 @@ var quizModal = `
 </div>
 </div>
 </div>`
-$('body').append(quizModal);
-const enrollButton = document.getElementById('enroll-btn');
-console.log(enrollButton)
-a()
+
 
 });
 $(document).ready(function () {
