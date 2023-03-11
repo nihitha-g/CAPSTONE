@@ -61,6 +61,7 @@ app.use('/get_users_data',userRoutes)
 
 //user profile routes
 app.use('/userProfile', allUsersRoutes)
+
 //enroll
 app.use('/enroll',enrollRoutes)
 app.use('/getUserDetails',enrollRoutes)

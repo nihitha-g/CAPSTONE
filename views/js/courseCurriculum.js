@@ -47,7 +47,7 @@ $(document).ready(function () {
     var optionC = $('#addTopic input[name="optionC"]').val()
     var optionD = $('#addTopic input[name="optionD"]').val()
     var correctOption = $('#addTopic select[name="correctOption"]').val()
-    var Instrutor_Email=window.localStorage.getItem('k')
+   
 
     var inputObj = {
       moduleName: moduleName,
@@ -124,11 +124,11 @@ $(document).ready(function () {
     courseTitle = window.localStorage.getItem('courseTitle')
     var data = {
       courseTitle:courseTitle,
-      Instrutor_Email:Instrutor_Email,
       sections:sectiondata
     }
   let sectiontotal = JSON.stringify(data);
     console.log(sectiontotal)
+   
     $.ajax({
       method:'POST',
       contentType: 'application/json',

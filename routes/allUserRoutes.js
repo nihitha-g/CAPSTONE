@@ -14,4 +14,6 @@ routes.post('/instructorUpdate',upload.single('file'),userDetail.studentToUserSt
 routes.post('/acceptOrReject',userDetail.acceptInstructor)
 routes.post('/status',userDetail.getinstructorInfo)
 routes.get('/:email',userDetail.userProfileDetails)
+routes.post('/:userEmail',userDetail.getUserEnrolledCourses)
+routes.get('/get/:Instrutor_Email',userDetail.getCoursesByInstructorEmail)
 module.exports = routes

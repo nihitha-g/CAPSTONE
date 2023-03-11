@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+   
+
+  </script>
+    
+    <style>
+.card-title {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50; /* change color to your preference */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.card-title::before,
+.card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  width: 30%;
+  border-bottom: 3px solid #fdcb6e; /* change color to your preference */
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.card-title::before {
+  left: 0;
+}
+
+.card-title::after {
+  right: 0;
+}
+
+.card-title:hover::before,
+.card-title:hover::after {
+  transform: scaleX(1);
+}
+
+.card-text {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+  color: #7f8c8d; /* change color to your preference */
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-text:hover {
+  opacity: 1;
+}
+h2 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 36px;
+  color: #2c3e50;
+  text-shadow: 2px 2px #fff;
+}
+
+ #badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.badge-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(33.33% - 20px);
+  height: 300px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  padding: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.badge-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+
+.badge-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.badge-card h5 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #212529;
+}
+
+.badge-card p {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .badge-card {
+    width: 100%;
+  }
+}
+
+
+
+
+      </style>
+      
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+          <h2>My Badges</h2>
+          <div id="badge-container" class="row"></div>
+        </div>
+      </div>
+
+  <script>
+  $(document).ready(function() {
+    // make a GET request to the getUserBadges endpoint to retrieve the user's earned badges
+    $.post('http://127.0.0.1:9999/badge/getBadges/priyanshu@gmail.com', function(data) {
+      // loop over each badge in the response data and dynamically generate HTML elements to display the badges
+      data.forEach(function(badge) {
+        var badgeHtml = '<div class="col-md-4">' +
+        '<div class="card mb-3">' +
+        '<img class="card-img-top" src="' + badge.image + '">' +
+        '<div class="card-body">' +
+        '<h5 class="card-title">' + badge.name + '</h5>' +
+        '<p class="card-text">' + badge.courseName + '</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+      $('#badge-container').append(badgeHtml);
+      });
+    });
+  });
+  </script>
+  </body>
+  </html>

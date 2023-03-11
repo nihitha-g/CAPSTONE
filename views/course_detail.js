@@ -39,6 +39,10 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
 // Append the section to the DOM
 $('#one').append(sectionHtml);
 
+const enrollButton = document.getElementById('enroll-btn');
+console.log(enrollButton)
+a()
+
 var sec2html=`
 <p class="mb-3">Welcome to the <strong> ${course.courseTitle}</strong></p>
 <p class="mb-3">to become a  expert with this <strong> ${course.courseDescription}</strong></p>
@@ -60,7 +64,7 @@ var sec3html=`<div class="accordion-item mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <div class="position-relative d-flex align-items-center">
             
-                <a href="${course.sections.moduleList[0].videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
+                <a href="${course.sections.moduleList.videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
                     <i class="fas fa-play me-0"></i>
                 </a>
                 <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px">${course[0].sections[0].moduleList[0].moduleName}</span>
@@ -127,9 +131,6 @@ var quizModal = `
 </div>
 </div>`
 $('body').append(quizModal);
-const enrollButton = document.getElementById('enroll-btn');
-console.log(enrollButton)
-a()
 
 });
 $(document).ready(function () {
