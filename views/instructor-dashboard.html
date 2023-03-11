@@ -24,6 +24,10 @@
 	<!-- Theme CSS -->
 	<link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+	<script src="js/student-dashboard.js"></script>
 
 </head>
 
@@ -96,13 +100,8 @@ Page Banner START -->
 						</div>
 						<!-- Profile info -->
 						<div class="col d-md-flex justify-content-between align-items-center mt-4">
-							<div>
-								<h1 class="my-1 fs-4">Lori Stevens <i class="bi bi-patch-check-fill text-info small"></i></h1>
-								<ul class="list-inline mb-0">
-									<li class="list-inline-item h6 fw-light me-3 mb-1 mb-sm-0"><i class="fas fa-star text-warning me-2"></i>4.5/5.0</li>
-									<li class="list-inline-item h6 fw-light me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate text-orange me-2"></i>12k Enrolled Students</li>
-									<li class="list-inline-item h6 fw-light me-3 mb-1 mb-sm-0"><i class="fas fa-book text-purple me-2"></i>25 Courses</li>
-								</ul>
+							<div id="p">
+								
 							</div>
 							<!-- Button -->
 							<div class="d-flex align-items-center mt-2 mt-md-0">
@@ -154,6 +153,8 @@ Page content START -->
 									
 									<a class="list-group-item text-danger bg-danger-soft-hover" href="sign-in.html"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Home Page</a>
 									<a class="list-group-item text-danger bg-danger-soft-hover" href="instructor_challenge.html"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Add Challenge</a>
+									<a class="list-group-item text-danger bg-danger-soft-hover" href="problemStatement.html"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Add Assignment</a>
+
 									<a class="list-group-item text-danger bg-danger-soft-hover" href="live.html"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Live Class</a>
 								</div>
 							</div>
@@ -250,192 +251,8 @@ Page content START -->
 
 							<!-- Card body START -->
 							<div class="card-body">
-								<div class="table-responsive-lg border-0 rounded-3">
-									<!-- Table START -->
-									<table class="table table-dark-gray align-middle p-4 mb-0">
-										<!-- Table head -->
-										<thead>
-											<tr>
-												<th scope="col" class="border-0 rounded-start">Course Name</th>
-												<th scope="col" class="border-0">Selling</th>
-												<th scope="col" class="border-0">Amount</th>
-												<th scope="col" class="border-0">Period</th>
-												<th scope="col" class="border-0 rounded-end">Action</th>
-											</tr>
-										</thead>
-										<!-- Table body START -->
-										<tbody>
-                      
-											<!-- Table item -->
-											<tr>
-												<!-- Course item -->
-												<td>
-													<div class="d-flex align-items-center">
-														<!-- Image -->
-														<div class="w-100px w-md-60px">
-															<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
-														</div>
-														<!-- Title -->
-														<h6 class="mb-0 ms-2">	
-															<a href="#">Building Scalable APIs with GraphQL</a>
-														</h6>
-													</div>
-												</td>
-												<!-- Selling item -->
-												<td>34</td>
-												<!-- Amount item -->
-												<td>$1,25,478</td>
-												<!-- Period item -->
-												<td>
-													<span class="badge bg-primary bg-opacity-10 text-primary">9 months</span>
-												</td>
-												<!-- Action item -->
-												<td>
-													<a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-0"><i class="far fa-fw fa-edit"></i></a>
-													<button class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
-												</td>
-											</tr>
-	
-											<!-- Table item -->
-											<tr>
-												<!-- Course item -->
-												<td>
-													<div class="d-flex align-items-center">
-														<!-- Image -->
-														<div class="w-100px w-md-60px">
-															<img src="assets/images/courses/4by3/10.jpg" class="rounded" alt="">
-														</div>
-														<!-- Title -->
-														<h6 class="mb-0 ms-2">	
-															<a href="#">Bootstrap 5 From Scratch</a>
-														</h6>
-													</div>
-												</td>
-												<!-- Selling item -->
-												<td>45</td>
-												<!-- Amount item -->
-												<td>$2,85,478</td>
-												<!-- Period item -->
-												<td>
-													<span class="badge bg-primary bg-opacity-10 text-primary">6 months</span>
-												</td>
-												<!-- Action item -->
-												<td>
-													<a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-0"><i class="far fa-fw fa-edit"></i></a>
-													<button class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
-												</td>
-											</tr>
-	
-											<!-- Table item -->
-											<tr>
-												<!-- Course item -->
-												<td>
-													<div class="d-flex align-items-center">
-														<!-- Image -->
-														<div class="w-100px w-md-60px">
-															<img src="assets/images/courses/4by3/02.jpg" class="rounded" alt="">
-														</div>
-														<!-- Title -->
-														<h6 class="mb-0 ms-2">	
-															<a href="#">Graphic Design Masterclass</a>
-														</h6>
-													</div>
-												</td>
-												<!-- Selling item -->
-												<td>21</td>
-												<!-- Amount item -->
-												<td>$85,478</td>
-												<!-- Period item -->
-												<td>
-													<span class="badge bg-primary bg-opacity-10 text-primary">4 months</span>
-												</td>
-												<!-- Action item -->
-												<td>
-													<a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-0"><i class="far fa-fw fa-edit"></i></a>
-													<button class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
-												</td>
-											</tr>
-	
-											<!-- Table item -->
-											<tr>
-												<!-- Course item -->
-												<td>
-													<div class="d-flex align-items-center">
-														<!-- Image -->
-														<div class="w-100px w-md-60px">
-															<img src="assets/images/courses/4by3/04.jpg" class="rounded" alt="">
-														</div>
-														<!-- Title -->
-														<h6 class="mb-0 ms-2">	
-															<a href="#">Learn Invision</a>
-														</h6>
-													</div>
-												</td>
-												<!-- Selling item -->
-												<td>28</td>
-												<!-- Amount item -->
-												<td>$98,478</td>
-												<!-- Period item -->
-												<td>
-													<span class="badge bg-primary bg-opacity-10 text-primary">8 months</span>
-												</td>
-												<!-- Action item -->
-												<td>
-													<a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-0"><i class="far fa-fw fa-edit"></i></a>
-													<button class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
-												</td>
-											</tr>
-	
-											<!-- Table item -->
-											<tr>
-												<!-- Course item -->
-												<td>
-													<div class="d-flex align-items-center">
-														<!-- Image -->
-														<div class="w-100px w-md-60px">
-															<img src="assets/images/courses/4by3/06.jpg" class="rounded" alt="">
-														</div>
-														<!-- Title -->
-														<h6 class="mb-0 ms-2">	
-															<a href="#">Angular – The Complete Guider</a>
-														</h6>
-													</div>
-												</td>
-												<!-- Selling item -->
-												<td>38</td>
-												<!-- Amount item -->
-												<td>$1,02,478</td>
-												<!-- Period item -->
-												<td>
-													<span class="badge bg-primary bg-opacity-10 text-primary">1 year</span>
-												</td>
-												<!-- Action item -->
-												<td>
-													<a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-0"><i class="far fa-fw fa-edit"></i></a>
-													<button class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
-												</td>
-											</tr>
-										</tbody>
-										<!-- Table body END -->
-									</table>
-									<!-- Table END -->
-								</div>
-
-								<!-- Pagination -->
-								<div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-3">
-									<!-- Content -->
-									<p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-									<!-- Pagination -->
-									<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-										<ul class="pagination pagination-sm pagination-primary-soft mb-0 pb-0">
-											<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-											<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-											<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-											<li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-											<li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-										</ul>
-									</nav>
-								</div>
+								<table class="display" style="width: 100%;" id="enrolledcourses">
+								</table>
 							</div>
 							<!-- Card body START -->
 						</div>
@@ -495,8 +312,36 @@ Footer END -->
 <!-- Vendors -->
 <script src="assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
 <script src="assets/vendor/apexcharts/js/apexcharts.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+
 
 <!-- Template Functions -->
+<script>
+	$(document).ready(function() {
+      const email = window.localStorage.getItem('k')
+        // Load the JSON data using jQuery's $.get() function
+        $.post('http://127.0.0.1:9999/userProfile/get/priyanshu@gmail.com' , function(data) {
+          // Log the data to the console to verify that it was loaded correctly
+          console.log(data);
+          // Initialize the DataTable datatawith the data
+          $('#enrolledcourses').dataTable({
+            data: data[0],
+            columns: [
+              { title: "Course Title", data: "courseTitle" },
+              
+              { title: "Course Short Description", data: "courseShortDescription" },
+          
+              { title: "Students Enrolled", data: "Students_Enrolled.length" }
+            ]
+          });
+        });
+      });
+      
+      
+	</script>
 <script src="assets/js/functions.js"></script>
 
 </body>

@@ -252,10 +252,10 @@
 });
 
 </script>
+<script src="js/showproblem.js"></script>
 <script>
-  $(document).ready(function(){
-    var questionid = '6408e3fc2e2a0e384c384bf4';
-    $.get('http://localhost:9999/course/getProblem/' + questionid)
+  const problemId = window.localStorage.getItem('problemId')
+   $.get('http://localhost:9999/course/getProblem/'+problemId)
       .done(function(data) {
         $('#editor1').append(data.problemStatement);
         $('#editor2').append(data.inputFormat)
@@ -268,8 +268,8 @@
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.error("Error getting problem:", textStatus, errorThrown);
       });
-  });
 </script>
+
 
 <!-- Bootstrap JS -->
 </body>

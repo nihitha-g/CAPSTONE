@@ -29,20 +29,25 @@ $(document).ready(function() {
               outputFormat: outputFormat,
               explanation: explanation,
               sampleInputs:sampleInputs,
-              sampleOuputs:sampleOuputs
+              sampleOutputs:sampleOuputs
             },
             success: function(response) {
               // Handle the server's response
               console.log(response);
+              alert("Saved")
             },
             error: function(error) {
               // Handle errors
               console.log(error);
             }
+
           });
       })
 
   });
+
+
+  
       // Initialize Quill editor for Lesson 3
    
     

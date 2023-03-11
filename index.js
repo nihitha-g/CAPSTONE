@@ -49,7 +49,7 @@ app.use('/instructor',InstructorRoutes)
 
 app.use('/courseDetails',courseRoutes)
 app.use('/course',courseRoutes)
-
+app.use('/getproblems',courseRoutes)
 
 
 app.use('/getusercount',userRoutes)
