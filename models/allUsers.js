@@ -74,13 +74,11 @@ const user = {
     earnedBadges: [{
         name: {
           type: String,
-<<<<<<< HEAD
-=======
+
         },
         course: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Course',
->>>>>>> a623e5b7bb18a3337a11dec0a586ecc118671099
         },
         course:[{
           type: mongoose.Schema.Types.ObjectId,
