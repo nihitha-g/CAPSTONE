@@ -27,6 +27,7 @@ $(document).ready(function() {
   
         // Get the contents of the Quill editor
         const courseDescription = editor.root.innerHTML;
+        
 
         // Do something with the form values
         console.log(courseTitle,

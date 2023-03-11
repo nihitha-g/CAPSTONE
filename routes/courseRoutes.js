@@ -8,7 +8,7 @@ const upload = require('../middleware/upload')
 //new course
 routes.post('/Curriculum',courseRoute.addCurriculum)
 //problem
-
+routes.get('/content',courseRoute.getproblemcard)
 routes.post('/problems',courseRoute.problemcontent)
 routes.get('/getProblem/:questionid',courseRoute.getProblem)
 

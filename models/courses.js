@@ -22,7 +22,12 @@ const courseSchema = new mongoose.Schema({
   courseImage:{
     type:String,
     required: true
+  },  
+  
+  Instrutor_Email:{
+    type: String
   },
+
   courseShortDescription: {
     type: String,
     required: true

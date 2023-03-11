@@ -59,6 +59,16 @@ const quizCTRl = require("../models/quize");
  
  
 // }
+
+function getproblemcard(req,res) {
+  problems.problems.find({},(err, documents) => {
+    if (err) throw err;
+    // Send the documents as a response to the client
+    res.send(documents);
+  
+  })
+}
+
 async function addCurriculum(req,res){
 
   const sections = req.body.sections;
@@ -134,13 +144,14 @@ function getProblem(req, res) {
 function problemcontent(req,res){
   console.log(req.body)
     const problemq = problems.problems({
+      
         problemStatement:req.body.problemStatement,
         constraints:req.body.constraints,
         inputFormat:req.body.inputFormat,
         outputFormat:req.body.outputFormat,
         explanation:req.body.explanation,
         sampleInputs:req.body.sampleInputs,
-        sampleOutputs:req.body.sampleOutputs
+        sampleOutputs:req.body.sampleOuputs
     })
 
     problemq.save((err,result)=>{
@@ -209,4 +220,4 @@ catch (e) {
 }
 }
 
-module.exports = {getProblem,addCourse,addCurriculum,problemcontent,getCourse,getCourse1}
+module.exports = {getproblemcard,getProblem,addCourse,addCurriculum,problemcontent,getCourse,getCourse1}

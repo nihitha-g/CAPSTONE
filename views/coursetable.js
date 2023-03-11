@@ -2,8 +2,9 @@
 
       
     $(document).ready(function() {
+      const email = window.localStorage.getItem('k')
         // Load the JSON data using jQuery's $.get() function
-        $.post('http://127.0.0.1:9999/userProfile/priyanshu@gmail.com', function(data) {
+        $.post('http://127.0.0.1:9999/userProfile/'+email , function(data) {
           // Log the data to the console to verify that it was loaded correctly
           console.log(data);
       

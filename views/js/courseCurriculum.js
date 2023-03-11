@@ -122,6 +122,7 @@ $(document).ready(function () {
     });
     console.log(sectiondata);
     courseTitle = window.localStorage.getItem('courseTitle')
+    
     var data = {
       courseTitle:courseTitle,
       sections:sectiondata
@@ -134,7 +135,6 @@ $(document).ready(function () {
       contentType: 'application/json',
       data:sectiontotal,
       url:'http://localhost:9999/course/Curriculum',
-
       success:function(result){
         alert("data saved successsfully")
       },
@@ -149,12 +149,4 @@ $(document).ready(function () {
 })
 
 
-
-
-
-
-
-      
-
-      
  
