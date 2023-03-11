@@ -65,19 +65,11 @@ function enroll(req, res) {
     }
     if (!user) return res.send({ error: "User not found" });
     const alreadyEnrolled = user.coursesEnrolled.includes(courseName);
-<<<<<<< HEAD
     if (alreadyEnrolled) return res.status(400).send({ error: 'You have already enrolled in this course' });
     console.log(user)
-=======
-    if (alreadyEnrolled)
-      return res
-        .status(400)
-        .send({ error: "You have already enrolled in this course" });
->>>>>>> bf18ebfd64e106a6cd0ba4955a509a0816ec220a
     user.coursesEnrolled.push({
       course: courseName,
     });
-<<<<<<< HEAD
    user.save((err) => {
       if (err) return res.status(500).send({ error: 'Error while enrolling in course' });
       CourseCTRl.Course.findByIdAndUpdate(req.body.coursesEnrolled, { $push: { Students_Enrolled: email } }, (err, docs) => {
@@ -96,29 +88,6 @@ function enroll(req, res) {
     });
   }
 
-=======
-
-    user.save((err) => {
-      if (err)
-        return res
-          .status(500)
-          .send({ error: "Error while enrolling in course" });
-      CourseCTRl.Course.updateOne(
-        { course_name: req.body.coursesEnrolled },
-        { $push: { Students_Enrolled: req.body.email } },
-        (err, docs) => {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log(req.body);
-            res.send("success");
-          }
-        }
-      );
-    });
-  });
-}
->>>>>>> bf18ebfd64e106a6cd0ba4955a509a0816ec220a
 
 function getUserDetails(req, res) {
   const email = req.body.Email;

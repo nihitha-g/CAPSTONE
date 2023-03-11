@@ -7,7 +7,7 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
     console.log(course)
     localStorage.setItem('course_id',course._id) 
     localStorage.setItem('module_id',course.section)
-    localStorage.setItem('module_id',course.sections[0].moduleList[0]._id)
+   
   // Update badge
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
