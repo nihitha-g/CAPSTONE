@@ -7,29 +7,18 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
   
     console.log(course)
     localStorage.setItem('course_id',course._id) 
-    localStorage.setItem('module_id',course.section[0])
+    localStorage.setItem('module_id',course.section)
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
   '<div class="row py-5">' +
   '<div class="col-lg-8">' +
-  '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">' + course.category + '</h6>' +
+  '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">COURSE</h6>' +
   '<h1>' + course.courseTitle  + '</h1>' +
   '<button id="enroll-btn" type="button" class="btn btn-primary" onclick="enrol()" data-index="' + course._id + '">Enroll Now</button>' +
         '</div>' +
   '<p>' + course.courseShortDescription
-+ '</p>' +'<section class="bg-light py-3">'+
-'</section>' +
-'<ul class="list-inline mb-0">' +
++ '</p>' 
 
-  '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-star text-warning me-2"></i>' + course.rating + '</li>' +
-  '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate text-orange me-2"></i>' + course.enrolled + '</li>' +
-  '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-signal text-success me-2"></i>' + course.level + '</li>' +
-  '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="bi bi-patch-exclamation-fill text-danger me-2"></i>' + course.lastUpdated + '</li>' +
-  '<li class="list-inline-item h6 mb-0"><i class="fas fa-globe text-info me-2"></i>' + course.language + '</li>' +
-  '</ul>' +
-  '</div>' +
-  '</div>' +
-  '</div>' +
   '</section>';
 
 // Append the section to the DOM
@@ -47,134 +36,154 @@ var sec2html=`
 $('#two').append(sec2html)
 console.log("hi")
 
-var sec3html=`<div class="accordion-item mb-3">
-<h6 class="accordion-header font-base" id="heading-1">
-    <button class="accordion-button fw-bold rounded d-sm-flex d-inline-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-    ${course.sections.sectionName}
-        <span class="small ms-0 ms-sm-2">   ${course.sections.length}</span> 
-    </button>
-</h6>
-<div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
-    <div class="accordion-body mt-3">
-       
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="position-relative d-flex align-items-center">
-            
-                <a href="${course.sections.moduleList.videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
-                    <i class="fas fa-play me-0"></i>
-                </a>
-                <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px">${course[0].sections[0].moduleList[0].moduleName}</span>
-            </div>
-            <div>
-            <button type="button" class="btn btn-success btn-sm" id="mark-completed">Completed</button>
-        </div>
-            <p class="mb-0">2m 10s</p>
-            
-        </div>
-        <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#quiz-modal">
-        Take Quiz
-        </button>
-        <hr>
-        </div>
-        </div>
-</div>`;
+// Loop over all sections
+for (let i = 0; i < course.sections.length; i++) {
+  const section = course.sections[i];
+  let moduleHtml = '';
 
-$('#three').append(sec3html);
+  // Loop over all modules in this section
+  for (let j = 0; j < section.moduleList.length; j++) {
+    const module = section.moduleList[j];
+    const quizId = `quiz-modal-${i}-${j}`; // create a unique ID for the quiz modal
+    moduleHtml += `
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="position-relative d-flex align-items-center">
+          <a href="${module.videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
+            <i class="fas fa-play me-0"></i>
+          </a>
+          <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px">${module.moduleName}</span>
+        </div>
+        <div>\
+        <button type="button" class="btn btn-success btn-sm" onclick="updatemodulepoints('${module._id}')" data-moduleid="${module._id}" id="mark-completed">Mark as Completed</button>
+
+        </div>
+        <p class="mb-0"></p>
+      </div>
+      <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#${quizId}">
+        Take Quiz
+      </button>
+      <hr>
+      <div class="modal fade" id="${quizId}" tabindex="-1" aria-labelledby="${quizId}-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="${quizId}-label">Quiz</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h6 id="${quizId}-question">${module.questions}</h6>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="${quizId}-radio" id="${quizId}-radio-1" value="1">
+                <label class="form-check-label" for="${quizId}-radio-1">
+                  <span id="${quizId}-option-1">${module.optionA}</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="${quizId}-radio" id="${quizId}-radio-2" value="2">
+                <label class="form-check-label" for="${quizId}-radio-2">
+                  <span id="${quizId}-option-2">${module.optionB}</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="${quizId}-radio" id="${quizId}-radio-3" value="3">
+                <label class="form-check-label" for="${quizId}-radio-3">
+                  <span id="${quizId}-option-3">${module.optionC}</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="${quizId}-radio" id="${quizId}-radio-4" value="4">
+                <label class="form-check-label" for="${quizId}-radio-4">
+                <span id="${quizId}-option-4">${module.optionD}</span>
+                </label>
+                </div>
+                <div id="${quizId}-feedback"></div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="${quizId}-submit" onclick="submit('${quizId}','${module.correctOption}')">Submit</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                
+
+    
+
+    `;
+  }
+
+  // Create HTML for the section
+  const secHtml = `
+    <div class="accordion-item mb-3">
+      <h6 class="accordion-header font-base" id="heading-${i}">
+        <button class="accordion-button fw-bold rounded d-sm-flex d-inline-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${i}" aria-expanded="true" aria-controls="collapse-${i}">
+          ${section.sectionName}
+          <span class="small ms-2">${section.moduleList.length} modules</span>
+        </button>
+      </h6>
+      <div id="collapse-${i}" class="accordion-collapse collapse show" aria-labelledby="heading-${i}" data-bs-parent="#accordionExample2">
+        <div class="accordion-body mt-3">
+          ${moduleHtml}
+        </div>
+      </div>
+    </div>
+  `;
+
+  $('#three').append(secHtml);
+  
+}
+
 
 // Quiz Modal
-var quizModal = `
-<div class="modal fade" id="quiz-modal" tabindex="-1" aria-labelledby="quiz-modal-label" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="quiz-modal-label">Quiz</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
-<div class="modal-body" id="${course.sections.moduleList.questions}">
-<h6>Question:</h6>
-<p id="quiz-question">${course.sections.moduleList.questions}</p>
-<div class="form-check">
-<input class="form-check-input" name="question1" type="radio" name="quiz-radio" id="quiz-radio-1" value="1">
-<label class="form-check-label" for="quiz-radio-1">
-<span id="quiz-option-1">${course.sections.moduleList.optionA}</span>
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input"  name="question1" type="radio" name="quiz-radio" id="quiz-radio-2" value="2">
-<label class="form-check-label" for="quiz-radio-2">
-<span id="quiz-option-2">${course.sections.moduleList.optionB}</span>
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input"  name="question1" type="radio" name="quiz-radio" id="quiz-radio-3" value="3">
-<label class="form-check-label " for="quiz-radio-3"   >
-<span id="quiz-option-3">${course.sections.moduleList.optionC}</span>
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input"  name="question1" type="radio" name="quiz-radio" id="quiz-radio-4" value="4">
-<label class="form-check-label " for="quiz-radio-4"   >
-<span id="quiz-option-4">${course.sections.moduleList.optionD}</span>
-</label>
-</div>
 
-  <div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<button type="button" id="quiz-submit-button" onclick="submit('${course.sections.moduleList.questions}','${course.sections.moduleList.correctOption}')" class="btn btn-primary">Submit</button>
-</div>
-</div>
-</div>
-</div>
-</div>`
-$('body').append(quizModal);
 
 });
-$(document).ready(function () {
-    const markCompletedBtn = document.getElementById("mark-completed");
-    markCompletedBtn.addEventListener("click", function() {
-        alert("Module successfully completed!");
-    userEmail=window.localStorage.getItem('k')
-    courseId=window.localStorage.getItem('course_id')
-    moduleId=window.localStorage.getItem('module_id')
+function updatemodulepoints(moduleId) {
+  // Make sure the module ID is not undefined or null
+  if (!moduleId) {
+    console.error("Module ID is not defined.");
+    return;
+  }
 
+  // Make AJAX call to update module points
+  const userEmail = window.localStorage.getItem('k');
+  const courseId = window.localStorage.getItem('course_id');
+  const data = {
+    userEmail: userEmail,
+    courseId: courseId,
+    moduleId: moduleId
+  };
+  const dat = JSON.stringify(data);
+
+  $.ajax({
+    method: "POST",
+    contentType: "application/json",
+    data: dat,
+    url: 'http://127.0.0.1:9999/badge/addmp',
+    success: function(data) {
+      console.log(data.message);
+      // alert("Module successfully completed!");
    
-        let data={
-            userEmail: userEmail,
-            courseId: courseId,
-            moduleId: moduleId
-
-        }
-        let dat= JSON.stringify(data)
-        console.log(dat)
-        
-      // Make AJAX call to update module points
-      $.ajax({
-        method: "POST",
-        contentType: "application/json",
-        data: dat,
-        url: 'http://127.0.0.1:9999/badge/addmp',
-        success: function(data) {
-          console.log(data.message);
-          
-        },
-        error: function(error) {
-          console.log(error.responseJSON.message);
-        }
-      });
-    
+    },
+    error: function(error) {
+      console.log(error.responseJSON.message);
+    }
   });
+}
 
-})
- function submit(quizId,correctAnswer) {
+ function submit(quizId,correctOption) {
    {
     var quiz = document.getElementById(quizId);
     console.log(quiz)
+    console.log(correctOption)
     
-        var selectedAnswer = quiz.querySelector('input[name=question1]:checked').value;
+    const selectedAnswer = document.querySelector('input[name="'+quizId+'-radio"]:checked').value;
+
+
         console.log(selectedAnswer)
        
   
-        if (selectedAnswer === correctAnswer) {
+        if (selectedAnswer === correctOption) {
           alert('Correct answer!');
           userEmail=window.localStorage.getItem('k')
           courseId=window.localStorage.getItem('course_id')
@@ -252,7 +261,7 @@ $(document).ready(function () {
     
 const enroll_Button = document.querySelector(`button[data-index="${course_title}"]`);
 console.log(enroll_Button)
-enroll_Button.textContent = isEnrolled ? "View Course" : "Enroll";
+enroll_Button.textContent = isEnrolled ? "Enrolled" : "Enroll";
 enroll_Button.onclick = isEnrolled ? handleView : enrol;
 
      
@@ -363,10 +372,7 @@ enroll_Button.onclick = isEnrolled ? handleView : enrol;
   console.log(email)
   
   
-  function handleView(){
-    window.location.href = "coursecontent.html";
-    
-  }
+
   
   
     }

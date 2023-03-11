@@ -137,11 +137,11 @@ async function updateChallengePoints(req, res) {
 // };
 
 async function awardBadge(req, res) {
-  const userEmail = req.body.userEmail;
+  const email = req.body.email;
 
   try {
     // Find the user in the database
-    const user = await UserCTRl.User.findOne({ email: userEmail });
+    const user = await UserCTRl.User.findOne({ email: email});
 
     if (!user) {
       return res.status(404).send('User not found');
@@ -171,7 +171,7 @@ async function awardBadge(req, res) {
 
       // Add badges to user's earned badges array based on their points
      // Add badges to user's earned badges array based on their points
-if (totalPoints >= 50 && totalPoints < 80) {
+if (totalPoints >= 20 && totalPoints < 40) {
   // Check if user already has the badge for the course
   const badgeExists = user.earnedBadges.some(
     (badge) => badge.name === 'Beginner' && badge.course.includes(courseId)
@@ -185,7 +185,7 @@ if (totalPoints >= 50 && totalPoints < 80) {
         'https://www.shutterstock.com/image-vector/beginner-3d-gold-badge-red-260nw-327339653.jpg',
     });
   }
-} else if (totalPoints >= 80 && totalPoints < 100) {
+} else if (totalPoints >= 50 && totalPoints < 70) {
   // Check if user already has the badge for the course
   const badgeExists = user.earnedBadges.some(
     (badge) => badge.name === 'Intermediate' && badge.course.includes(courseId)
@@ -197,7 +197,7 @@ if (totalPoints >= 50 && totalPoints < 80) {
       image: 'https://www.ticklinks.com/Login/images/Silver.png',
     });
   }
-} else if (totalPoints >= 100) {
+} else if (totalPoints >= 70) {
   // Check if user already has the badge for the course
   const badgeExists = user.earnedBadges.some(
     (badge) => badge.name === 'Expert' && badge.course.includes(courseId)

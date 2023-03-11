@@ -66,27 +66,29 @@ function enroll(req, res) {
     if (!user) return res.send({ error: 'User not found' });
     const alreadyEnrolled = user.coursesEnrolled.includes(courseName);
     if (alreadyEnrolled) return res.status(400).send({ error: 'You have already enrolled in this course' });
+    console.log(user)
     user.coursesEnrolled.push({
       course: courseName,
 
     });
-
-
-    user.save((err) => {
+   user.save((err) => {
       if (err) return res.status(500).send({ error: 'Error while enrolling in course' });
-      CourseCTRl.Course.updateOne({ course_name: req.body.coursesEnrolled }, { $push: { Students_Enrolled: req.body.email } }, (err, docs) => {
+      CourseCTRl.Course.findByIdAndUpdate(req.body.coursesEnrolled, { $push: { Students_Enrolled: email } }, (err, docs) => {
         if (err) {
-          console.log(err)
-        } else {
-          console.log(req.body)
-          res.send("success")
+          console.log(err);
+          return res.status(500).send({ error: 'Error while updating course' });
         }
+        console.log(req.body);
+        res.send("success");
+      });
+      
+       
       })
 
 
     });
-  })
-}
+  }
+
 
 function getUserDetails(req, res) {
   const email = req.body.Email;

@@ -146,6 +146,40 @@ h2 {
       </div>
 
   <script>
+
+
+awardbadge()
+  
+function awardbadge(){
+  const email=window.localStorage.getItem('k')
+
+  
+          obj={
+            email: email,
+           
+            }
+         
+          console.log(obj)
+          obj = JSON.stringify(obj)
+          $.ajax({
+            method: 'POST',
+            contentType: "application/json",
+            "data": obj,
+            url: 'http://localhost:9999/badge/addBadges',
+             success: (e) => {
+              console.log('Badges Update:', obj);
+            },
+            error: (error) => {
+              console.error('Error:', error);
+            }
+          });
+    
+      }
+    
+    error: (error) => {
+      console.error('Error fetching user details:', error);
+    }
+
   $(document).ready(function() {
     // make a GET request to the getUserBadges endpoint to retrieve the user's earned badges
     $.post('http://127.0.0.1:9999/badge/getBadges/priyanshu@gmail.com', function(data) {
