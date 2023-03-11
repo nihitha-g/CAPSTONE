@@ -335,25 +335,6 @@ async function getUserBadges(req, res) {
 
 
 
-async function getBadges(req, res) {
-  const userEmail = req.body.email;
-
-  try {
-    // Find the user in the database
-    const user = await UserCTRl.User.findOne({ email: userEmail });
-
-    if (!user) {
-      return res.status(404).send('User not found');
-    }
-
-    // Return the user's earned badges
-    res.send(user.earnedBadges);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error retrieving user badges');
-  }
-}
 
 
-
-module.exports = { awardBadge,getUserBadges, getBadges, updateModulePoints, updateQuizPoints, updateChallengePoints }
+module.exports = { awardBadge,getUserBadges, updateModulePoints, updateQuizPoints, updateChallengePoints }

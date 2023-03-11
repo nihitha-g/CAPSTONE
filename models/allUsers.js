@@ -15,6 +15,7 @@ const user = {
         course: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Course',
+          required: true
         },
         modulePoints: {
           completedModules: [{
@@ -76,17 +77,11 @@ const user = {
           type: String,
 
         },
-        course: {
+        course: [{
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Course',
-        },
-        course:[{
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Course'
-
-          
-
         }],
+      
 
         image: {
           type: String,

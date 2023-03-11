@@ -1,5 +1,6 @@
 const express = require('express')
 const UserCTRl = require('../models/allUsers')
+const courseCTRl= require('../models/courses')
 
 function addUser(req, res){
     console.log(req.body)
@@ -208,7 +209,51 @@ function userProfileDetails(req, res){
         }
     })
 }
+const getUserEnrolledCourses = async (req, res) => {
+    try {
+      // Get user email from request params
+      const userEmail = req.params.userEmail;
+      console.log(userEmail)
+  
+      // Find user by email and populate the coursesEnrolled field with the Course model
+      const user = await UserCTRl.User.findOne({ email: userEmail }).populate({
+        path: 'coursesEnrolled.course',
+        model: courseCTRl.Course
+      });
+  
+      // If user not found, return 404 status code
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+       console.log(user)
+       console.log(user.coursesEnrolled)
+      // If coursesEnrolled field not defined, return empty array
+      const enrolledCourses = user.coursesEnrolled ? user.coursesEnrolled.map(course => course.course) : [];
+  
+      // Fetch course details from database and add them to enrolledCourses array
+      for (let i = 0; i < enrolledCourses.length; i++) {
+        const course = await courseCTRl.Course.findById(enrolledCourses[i]._id);
+        enrolledCourses[i] = course;
+      }
+  
+      // Return enrolled courses as response
+      res.json(enrolledCourses);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
 
+
+  async function getCoursesByInstructorEmail( req, res, next) {
+  const Instrutor_Email = req.params.Instrutor_Email;
+  try {
+    const courses = await courseCTRl.Course.find({ Instrutor_Email: Instrutor_Email });
+    res.status(200).json(courses);
+  } catch (error) {
+    next(error);
+  }
+};
 
 /* db.collection.update(
     { "_id": ID, "playlists._id": "58"},
@@ -223,4 +268,4 @@ function userProfileDetails(req, res){
 ) */
 
 
-module.exports ={addUser, authUser, acceptInstructor, studentToUserStep1 , instructorInfo, getinstructorInfo , courseCompletion, userProfileDetails}
+module.exports ={addUser, authUser, getCoursesByInstructorEmail,acceptInstructor, studentToUserStep1 , getUserEnrolledCourses, instructorInfo, getinstructorInfo , courseCompletion, userProfileDetails}

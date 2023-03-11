@@ -38,9 +38,6 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
 
 // Append the section to the DOM
 $('#one').append(sectionHtml);
-const enrollButton = document.getElementById('enroll-btn');
-console.log(enrollButton)
-a()
 
 var sec2html=`
 <p class="mb-3">Welcome to the <strong> ${course.courseTitle}</strong></p>
@@ -50,25 +47,26 @@ var sec2html=`
 $('#two').append(sec2html)
 console.log("hi")
 
-for (let i = 0; i < course.sections.length; i++) {
-  const section = course.sections[i];
-  let secHtml = `
-    <div class="card mb-4">
-      <div class="card-header">${section.sectionName}</div>
-      <div class="card-body">
-  `;
-
-  for (let j = 0; j < section.moduleList.length; j++) {
-    const module = section.moduleList[j];
-
-    let moduleHtml = `
-      <div class="position-relative d-flex align-items-center">
-        <a href="${module.videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
-          <i class="fas fa-play me-0"></i>
-        </a>
-        
-        <div class="ms-2 mb-0 h6 fw-light">
-          ${module.moduleName}
+var sec3html=`<div class="accordion-item mb-3">
+<h6 class="accordion-header font-base" id="heading-1">
+    <button class="accordion-button fw-bold rounded d-sm-flex d-inline-block collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+    ${course.sections.sectionName}
+        <span class="small ms-0 ms-sm-2">   ${course.sections.length}</span> 
+    </button>
+</h6>
+<div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
+    <div class="accordion-body mt-3">
+       
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="position-relative d-flex align-items-center">
+            
+                <a href="${course.sections.moduleList[0].videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
+                    <i class="fas fa-play me-0"></i>
+                </a>
+                <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px">${course[0].sections[0].moduleList[0].moduleName}</span>
+            </div>
+            <div>
+            <button type="button" class="btn btn-success btn-sm" id="mark-completed">Completed</button>
         </div>
         </div>
         <button type="button" class="btn btn-success btn-sm ms-auto" id="mark-completed">Completed</button>
@@ -105,7 +103,6 @@ for (let i = 0; i < course.sections.length; i++) {
     </div>
   `;
   $("#three").append(secHtml);
-}
 
 
 
@@ -154,9 +151,12 @@ var quizModal = `
 </div>
 </div>
 </div>`
+$('body').append(quizModal);
+const enrollButton = document.getElementById('enroll-btn');
+console.log(enrollButton)
+a()
 
-
-});
+);
 $(document).ready(function () {
     const markCompletedBtn = document.getElementById("mark-completed");
     markCompletedBtn.addEventListener("click", function() {

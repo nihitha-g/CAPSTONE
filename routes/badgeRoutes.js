@@ -9,7 +9,7 @@ router.post('/addBadges',upload.fields([{ name: 'Beginner',maxCount:1},{ name:'I
 router.post('/addmp',badgeController.updateModulePoints)
 router.post('/addqp',badgeController.updateQuizPoints)
 router.post('/addcp',badgeController.updateChallengePoints)
-router.post('/getBadges',badgeController.getBadges)
+// router.post('/getBadges',badgeController.getBadges)
 router.post('/getBadges/:userEmail',badgeController.getUserBadges)
 
 // router.get('/getBadges',badgeController.getBadge)//

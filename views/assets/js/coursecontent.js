@@ -23,6 +23,7 @@ $(document).ready(function() {
         const courseImage = $('#courseImage')[0].files[0];
         const courseVideo = $('#courseVideo')[0].files[0];
         const courseUrl = $('#courseUrl').val();
+        const Instrutor_Email=window.localStorage.getItem('k')
   
         // Get the contents of the Quill editor
         const courseDescription = editor.root.innerHTML;
@@ -34,7 +35,8 @@ $(document).ready(function() {
           courseDescription,
           courseImage,
           courseVideo,
-          courseUrl);
+          courseUrl,
+    );
           window.localStorage.setItem('courseTitle',courseTitle)
           const formData = new FormData();
           
@@ -45,7 +47,8 @@ $(document).ready(function() {
           formData.append('courseDescription',courseDescription)
           formData.append('courseImage', courseImage);
           formData.append('courseVideo', courseVideo);
-          formData.append('Instrutor_Email',window.localStorage.getItem('k'))
+          formData.append('Instrutor_Email',Instrutor_Email)
+
       
           for(let pair of formData.entries()){
             console.log(pair[0] + "-" + pair[1])

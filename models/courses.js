@@ -32,6 +32,9 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  Instrutor_Email:{
+    type: String
+  },
   sections: [
     {
       type: mongoose.Schema.Types.ObjectId,

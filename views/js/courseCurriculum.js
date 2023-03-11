@@ -47,8 +47,8 @@ $(document).ready(function () {
     var optionC = $('#addTopic input[name="optionC"]').val()
     var optionD = $('#addTopic input[name="optionD"]').val()
     var correctOption = $('#addTopic select[name="correctOption"]').val()
-    var Instrutor_Email=window.localStorage.getItem('k')
-    var roll = window.localStorage.getItem('ROLL')
+   
+
     var inputObj = {
       moduleName: moduleName,
       videoLink: videoLink,
@@ -125,10 +125,11 @@ $(document).ready(function () {
     
     var data = {
       courseTitle:courseTitle,
-      sections:sectiondata,
+      sections:sectiondata
     }
   let sectiontotal = JSON.stringify(data);
     console.log(sectiontotal)
+   
     $.ajax({
       method:'POST',
       contentType: 'application/json',
