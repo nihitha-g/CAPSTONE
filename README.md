@@ -82,5 +82,25 @@ http://127.0.0.1:9999/courseDetails/content{
 http://127.0.0.1:9999/courseDetails/savecourse{
     type:POST
 }
-
+http://127.0.0.1:9999/Addchallenge/get{
+    type:GET
+}
+http://127.0.0.1:9999/Addchallenge/:title{
+    type:get
+}
+http://127.0.0.1:9999/Addchallenge/:create{
+    type:POST
+}
+http://127.0.0.1:9999/Addchallenge/solvedBy{
+    type:POST
+}
+http://127.0.0.1:9999/enroll/e{
+    type:POST
+}
+http://127.0.0.1:9999/live{
+    type:POST
+}
+http://127.0.0.1:9999/getLive{
+ type:GET
+}
 

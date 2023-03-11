@@ -43,8 +43,8 @@ function showChallengeDetails(challengeTitle) {
       $("#challenge-details-hint").text("Hint:" + "    " + data[0].hint);
 
       var modal = document.querySelector("#challenge-details-modal");
-      var instance = M.Modal.init(modal);
-      instance.open();
+      // var instance = M.Modal.init(modal);
+      // instance.open();
       console.log(document.querySelector("#submit-flag-btn"));
       document.querySelector("#submit-flag-btn").onclick = function (event) {
         event.preventDefault();
@@ -80,7 +80,7 @@ function showChallengeDetails(challengeTitle) {
 
           // perform any other actions you want to take after solving the challenge
         } else {
-          M.toast({ html: "Oops! Incorrect flag. Try again.", classes: "red" });
+        alert("Oops Try Again")
         }
       };
     }
