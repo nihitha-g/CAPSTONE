@@ -4,27 +4,23 @@ const courseTitle=localStorage.getItem('courseTitle')
 
 console.log(courseTitle)
 $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) {
+  
     console.log(course)
     localStorage.setItem('course_id',course._id) 
-    localStorage.setItem('module_id',course.sections[0].moduleList[0]._id)
-  // Update badge
+    localStorage.setItem('module_id',course.section[0])
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
   '<div class="row py-5">' +
   '<div class="col-lg-8">' +
-  // Badge
   '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">' + course.category + '</h6>' +
-  // Title
   '<h1>' + course.courseTitle  + '</h1>' +
   '<button id="enroll-btn" type="button" class="btn btn-primary" onclick="enrol()" data-index="' + course._id + '">Enroll Now</button>' +
         '</div>' +
-  // Description
   '<p>' + course.courseShortDescription
-  + '</p>' +'<section class="bg-light py-3">'+
-  
-'</section>'
-  
-  '<ul class="list-inline mb-0">' +
++ '</p>' +'<section class="bg-light py-3">'+
+'</section>' +
+'<ul class="list-inline mb-0">' +
+
   '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-star text-warning me-2"></i>' + course.rating + '</li>' +
   '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate text-orange me-2"></i>' + course.enrolled + '</li>' +
   '<li class="list-inline-item h6 me-3 mb-1 mb-sm-0"><i class="fas fa-signal text-success me-2"></i>' + course.level + '</li>' +
