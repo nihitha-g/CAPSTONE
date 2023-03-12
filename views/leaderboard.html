@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Eduport - LMS, Education and Course Theme</title>
@@ -26,7 +26,90 @@
 	<!-- Theme CSS -->
 	<link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <style>
+        /* Add some styles to the table */
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          margin: 20px 0;
+          font-size: 16px;
+          font-weight: 500;
+          color: #212529;
+          background-color: #fff;
+          box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+          padding: 12px 15px;
+          text-align: left;
+        }
+        
+        th {
+          background-color: #f8f9fa;
+          border-bottom: 2px solid #dee2e6;
+          text-transform: uppercase;
+          font-size: 14px;
+        }
+        
+        td {
+          border-bottom: 1px solid #dee2e6;
+        }
+        
+        /* Add some styles to the leaderboard */
+        #leaderboard {
+          font-weight: 400;
+          color: #6c757d;
+        }
+        
+        #leaderboard tr:nth-child(odd) {
+          background-color: #f8f9fa;
+        }
+        
+        #leaderboard tr:nth-child(even) {
+          background-color: #fff;
+        }
+        
+        #leaderboard tr:hover {
+          background-color: #dee2e6;
+        }
+        
+        /* Add some styles to the page header */
+        header {
+          background-color: #007bff;
+          color: #fff;
+          padding: 20px;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 700;
+        }
+    
+        /* Add some styles to the pagination */
+        .pagination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px;
+        }
+    
+        .pagination button {
+          border: none;
+          background-color: #007bff;
+          color: #fff;
+          padding: 10px 15px;
+          margin: 0 5px;
+          cursor: pointer;
+          font-weight: 700;
+        }
+    
+        .pagination button:hover {
+          background-color: #0069d9;
+        }
+    
+        .pagination .active {
+          background-color: #0069
+        }
+        </style>
+  
 </head>
 
 <body>
@@ -123,9 +206,8 @@
 Page Banner START -->
 <section class="pt-0">
 	<div class="container-fluid px-0">
-		<div class="card bg-blue h-100px h-md-200px rounded-0 d-flex align-items-center justify-content-center" style="background:url(assets/images/pattern/04.png) no-repeat center center; background-size:cover;">
-			<h2 style="color:aliceblue">Student Dashboard</h2>
-		  </div>
+		<div class="card bg-blue h-100px h-md-200px rounded-0" style="background:url(assets/images/pattern/04.png) no-repeat center center; background-size:cover;">
+		</div>
 	</div>
 	<div class="container mt-n4">
 		<div class="row">
@@ -143,11 +225,23 @@ Page Banner START -->
 						<div class="col d-sm-flex justify-content-between align-items-center">
 							<div id="p"></div>
 							<script src="js/student-dashboard.js"></script>
+							<!-- <div>
+<section class="pt-0">
+	<div class="container-fluid px-0">
+		<div class="card bg-blue h-100px h-md-200px rounded-0" style="background:url(assets/images/pattern/04.png) no-repeat center center; background-size:cover;">
+		</div>
+	</div>
+	<div class="container mt-n4">
+		<div class="row">
+			<div class="col-12">
+				<div class="card bg-transparent card-body pb-0 ps-0 mt-2 mt-sm-0">
+					<div class="row d-sm-flex justify-sm-content-between mt-2 mt-md-0">
+					Avatar -->
+						
+							<!-- Button -->
 							
 							<div class="mt-2 mt-sm-0">
 								<a href="student-course-list.html" class="btn btn-outline-primary mb-0">View my courses</a>
-								<a href="become-instructor.html" class="btn btn-outline-primary mb-0">Become an Instrctor</a>
-
 							</div>
 						</div>
 					</div>
@@ -191,9 +285,9 @@ Page content START -->
 							<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
 								<!-- Dashboard menu -->
 								<div class="list-group list-group-dark list-group-borderless">
-									<a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-									<a class="list-group-item" href="calender.html"><i class="bi bi-card-checklist fa-fw me-2"></i>Calender</a>
-									<a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
+									<a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+									<a class="list-group-item " href="calender.html"><i class="bi bi-card-checklist fa-fw me-2"></i>Calender</a>
+									<a class="list-group-item active" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
 									<a class="list-group-item" href="studentCTF.html"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Challenges</a>
 									<a class="list-group-item" href="dash.html"><i class="bi bi-cart-check fa-fw me-2"></i>Badges</a>
 									<a class="list-group-item" href="assignment.html"><i class="bi bi-pencil-square fa-fw me-2"></i>Assignments</a>
@@ -206,75 +300,104 @@ Page content START -->
 				<!-- Responsive offcanvas body END -->
 			</div>
 			<!-- Right sidebar END -->
-
+<div class = "col-xl-9">
 			<!-- Main content START -->
-			<div class="col-xl-9">
-
-				<!-- Counter boxes START -->
-				<div class="row mb-4">
-					<!-- Counter item -->
-					<div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-						<div class="d-flex justify-content-center align-items-center p-4 bg-orange bg-opacity-15 rounded-3">
-							<span class="display-6 lh-1 text-orange mb-0"><i class="fas fa-tv fa-fw"></i></span>
-							<div class="ms-4">
-								<div class="d-flex">
-									<h5 class="totalcourses" id="totalcourses"></h5>
-								</div>
-								<p class="mb-0 h6 fw-light"> Courses Enrolled</p>
-							</div>
-						</div>
-					</div>
-					<!-- Counter item -->
-					
-					<!-- Counter item -->
-					<div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-						<div class="d-flex justify-content-center align-items-center p-4 bg-success bg-opacity-10 rounded-3">
-							<span class="display-6 lh-1 text-success mb-0"><i class="fas fa-medal fa-fw"></i></span>
-							<div class="ms-4">
-								<div class="d-flex">
-									<h5 class="badges" id="badges"> </h5>
-								</div>
-							<a href="dash.html"><p class="mb-0 h6 fw-light" >Earned Badges</p></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Counter boxes END -->
-
-				<div class="card border rounded-3">
-					<!-- Card header START -->
-					
-					<!-- Card header END -->
-					<script>
-						email=localStorage.getItem("k")
-						$.ajax({
-						type: "POST",
-						url: "http://127.0.0.1:9999/badge/getBadges/"+email,
-						success: function(result) {
-						  
-							$("#badges").text(result.length);
-						}
-						});
-				
-				    
-						email=localStorage.getItem("k")
-						$.ajax({
-						type: "GET",
-						url: "http://127.0.0.1:9999/userProfile/"+email,
-						success: function(result) {
-							 console.log(result.coursesEnrolled)
-				
-						  
-							$("#totalcourses").text(result[0].coursesEnrolled.length);
-						}
-						});
-				   </script>
-				<!-- Counter boxes END -->
-
-
-			<!-- Main content END -->
-			</div><!-- Row END -->
-		</div>
+		
+            <header>
+                <h1>Leaderboard</h1>
+              </header>
+              <div class="container">
+                <table id="leaderboard">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                <div class="pagination">
+                  <button id="prev-page" disabled>Prev</button>
+                  <button id="next-page">Next</button>
+                </div>
+              </div>
+            
+              <!-- jQuery and Bootstrap Bundle with Popper.js -->
+              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            
+              <script>
+                $(document).ready(function() {
+                  var currentPage = 1;
+                  var itemsPerPage = 10;
+            
+                  function displayData(data) {
+                    var startIndex = (currentPage - 1) * itemsPerPage;
+                    var endIndex = startIndex + itemsPerPage;
+                    var currentData = data.slice(startIndex, endIndex);
+            
+                    // Clear the leaderboard element first
+                    $("#leaderboard tbody").empty();
+            
+                    // Add ranking number to each user and create HTML elements for each user
+                    $.each(currentData, function(index, user) {
+                      var rank = $("<td>").text(startIndex + index + 1);
+                      var name = $("<td>").text(user.userName);
+                      var email = $("<td>").text(user.email);
+                      var points = $("<td>").text(user.totalChallengePoints);
+                      var row = $("<tr>").append(rank, name, email, points);
+                      $("#leaderboard tbody").append(row);
+                    });
+            
+                    // Enable or disable pagination buttons based on current page
+                    if (currentPage === 1) {
+                      $("#prev-page").prop("disabled", true);
+                    } else {
+                      $("#prev-page").prop("disabled", false);
+                    }
+            
+                    if (currentPage === Math.ceil(data.length / itemsPerPage)) {
+                      $("#next-page").prop("disabled", true);
+                    } else {
+                      $("#next-page").prop("disabled", false);
+                    }
+                  }
+            
+                  $.ajax({
+                    url: "http://127.0.0.1:9999/courseDetails/leader/board",
+                    type: "GET",
+                    success: function(data) {
+                      // Sort the data by points in descending order
+                      data.sort(function(a, b) {
+                        return b.totalChallengePoints - a.totalChallengePoints;
+                      });
+            
+                      // Display the first page of data
+                      displayData(data);
+            
+                      // Set up event listeners for pagination buttons
+                      $("#prev-page").on("click", function() {
+                        currentPage--;
+                        displayData(data);
+                      });
+            
+                      $("#next-page").on("click", function() {
+                        currentPage++;
+                        displayData(data);
+                      });
+                    },
+                  
+                    error: function(error) {
+                      console.log(error);
+                    }
+                  });
+                });
+              </script>
+			</div>
+		</div> <!-- Row END -->
 	</div>	
 </section>
 <!-- =======================
@@ -320,20 +443,10 @@ Footer END -->
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
 <!-- Bootstrap JS -->
-<script src="./assets/css/bootstrap.min.css"></script>
-<script src="./assets/js/jquery-3.3.1.min.js"></script>
-<script src="./assets/js/popper.min.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-
-<script src='./assets/fullcalendar/packages/core/main.js'></script>
-<script src='./assets/fullcalendar/packages/interaction/main.js'></script>
-<script src='./assets/fullcalendar/packages/daygrid/main.js'></script>
-
 <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Vendors -->
 <script src="assets/vendor/choices/js/choices.min.js"></script>
-<script src="assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
 
 <!-- Template Functions -->
@@ -341,3 +454,34 @@ Footer END -->
 
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Webestica.com">
+  <meta name="description" content="Eduport- LMS, Education and Course Theme">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+  
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+  
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" type="text/css" href="assets/vendor/apexcharts/css/apexcharts.css">
+  
+  <!-- Theme CSS -->
+  <link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
+  
+ 
+    </style>
+    </head>
+       <body>
+ 
+</body>

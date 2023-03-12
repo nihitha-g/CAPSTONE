@@ -16,5 +16,6 @@ routes.post('/status',userDetail.getinstructorInfo)
 routes.get('/:email',userDetail.userProfileDetails)
 routes.post('/:userEmail',userDetail.getUserEnrolledCourses)
 routes.get('/get/:Instrutor_Email',userDetail.getCoursesByInstructorEmail)
-
+// routes.get('/leaderboard',userDetail.getUsersWithChallengePoints)
+routes.get('/lb',userDetail.getUsersWithChallengePoints)
 module.exports = routes

@@ -127,6 +127,29 @@ async function addCurriculum(req,res){
 
 
 
+async function getUsersWithChallengePoints(req, res) {
+  try {
+    const users = await userCTRl.User.aggregate([
+      {
+        $project: {
+          _id: 0,
+          userName: 1,
+          email: 1,
+          totalChallengePoints: { $sum: "$coursesEnrolled.challengePoints.totalPoints" }
+        }
+      },
+      {
+        $sort: { totalChallengePoints: -1 }
+      }
+    ]);
+  
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
 
 
 
@@ -261,4 +284,4 @@ catch (e) {
 }
 }
 
-module.exports = {getproblemcard,getProblem, getInstructorDetailsByCourseTitle,addCourse,addCurriculum,problemcontent,getCourse,getCourse1}
+module.exports = {getproblemcard,getProblem,getUsersWithChallengePoints, getInstructorDetailsByCourseTitle,addCourse,addCurriculum,problemcontent,getCourse,getCourse1}

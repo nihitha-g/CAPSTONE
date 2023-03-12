@@ -255,6 +255,30 @@ const getUserEnrolledCourses = async (req, res) => {
   }
 };
 
+
+async function getUsersWithChallengePoints(req, res) {
+    try {
+        const users = await UserCTRl.User.aggregate([
+          {
+            $project: {
+              _id: 0,
+              userName: 1,
+              email: 1,
+              totalChallengePoints:{ $sum: "$coursesEnrolled.challengePoints.totalPoints" }
+            }
+          }
+        ]);
+    
+        res.json(users);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+      }
+    };
+  
+  
+
+
 /* db.collection.update(
     { "_id": ID, "playlists._id": "58"},
     { "$push": 
@@ -268,4 +292,4 @@ const getUserEnrolledCourses = async (req, res) => {
 ) */
 
 
-module.exports ={addUser, authUser, getCoursesByInstructorEmail,acceptInstructor, studentToUserStep1 , getUserEnrolledCourses, instructorInfo, getinstructorInfo , courseCompletion, userProfileDetails}
+module.exports ={addUser,getUsersWithChallengePoints, authUser, getCoursesByInstructorEmail,acceptInstructor, studentToUserStep1 , getUserEnrolledCourses, instructorInfo, getinstructorInfo , courseCompletion, userProfileDetails}
