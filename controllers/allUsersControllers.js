@@ -1,6 +1,7 @@
 const express = require('express')
 const UserCTRl = require('../models/allUsers')
 const courseCTRl= require('../models/courses')
+const jwt = require('jsonwebtoken')
 
 function addUser(req, res){
     console.log(req.body)
@@ -27,31 +28,25 @@ function addUser(req, res){
 
 
 
-function  authUser(req, res){
-    UserCTRl.User.findOne({email:req.body.email}, (err,docs) => {
-        if(err){
-            console.log("100")
-            console.log(err)}
-        else{
-            console.log("200")
-            console.log(docs)
-            if(docs === null){
-                res.send(err)
-            }else{
-            if(docs.password === req.body.password){
-                if(err){
-                    console.log(err)
-                }
-                else{
-                    res.send(docs)
-                }
-            }}
-        }
-})
-}
-
-
-
+function authUser(req, res) {
+    UserCTRl.User.findOne({ email: req.body.email }, (err, user) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send({ message: 'Internal server error' });
+      } else if (!user) {
+        res.status(401).send({ message: 'Invalid email or password' });
+      } else if (user.password !== req.body.password) {
+        res.status(401).send({ message: 'Invalid email or password' });
+      } else {
+        // Generate a JWT token with the user ID and email as payload
+        const token = jwt.sign({ userId: user._id, email: user.email }, 'capstonelms', { expiresIn: '1h' });
+  
+        // Send the token and user data as response
+        res.status(200).send({ token, user });
+      }
+    });
+  }
+  
 function instructorInfo(req, res){
     UserCTRl.User.find({},(err,docs) =>{
         if(err){

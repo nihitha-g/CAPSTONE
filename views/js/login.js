@@ -44,40 +44,45 @@ window.onload=function(){
   }
 
   
-  function validate(){
+  function validate() {
+    const email = $('#user_email').val();
+    const password = $('#user_pass2').val();
+    const userData = {
+      email,
+      password,
+    };
+  
+    if (email === 'admin@gmail.com' && password === 'admin') {
+      window.location.href = './admin-dashboard.html';
+    } else {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(userData),
+        url: 'http://localhost:9999/a/login',
+        success: (response) => {
+          if (response) {
+            // Store the JWT token in the browser's local storage
+            localStorage.setItem('token', response.token);
+  
+            // Store other user data in the local storage if needed
+            localStorage.setItem('role', response.role);
+            localStorage.setItem('k', email);
             
-    var email=$("#user_email").val();
-    var password=$("#user_pass2").val();
-    let udl={
-      email:email,
-      password:password
+  
+            // Redirect the user to the dashboard or home page
+            window.location.href = 'index.html';
+          } else {
+            alert('Invalid email or password');
+          }
+        },
+        error: (error) => {
+          console.error(error);
+          alert('Failed to log in. Please try again.');
+        },
+      });
     }
-    if(udl.email=="admin@gmail.com" && udl.password=="admin"){
-      window.location.href="./admin-dashboard.html";
-    }else{
-    let login = JSON.stringify(udl);
-    $.ajax({
-      "method":"POST",contentType:"application/json",'data':login,'url':'http://localhost:9999/a/login',
-      "success":function(e){
-        if(e){
-          // console.log(e.role)
-          localStorage.setItem('ROLL',e.role)
-          localStorage.setItem("k",email)
-          console.log(localStorage.getItem('k'))
-          // alert("success")
-          // if(localStorage.getItem('ROLL')=='Instructor'){
-          //   window.location.href="Instructor_index.html";
-          // }else{
-           window.location.href="index.html";
-        }else{
-          alert("wrong credintials")
-        }
-      },error:(e)=>{
-        alert("wrong...")
-      }
-    })
   }
-
-  }
+  
 
   
