@@ -1,6 +1,7 @@
 const courseCTRl = require('../models/courses')
 const problems = require('../models/problem')
 const moduleCTRl = require("../models/section");
+const userCTRl = require('../models/allUsers')
 const quizCTRl = require("../models/quize");
 //new 
 // async function addCurriculum(req,res){
@@ -118,7 +119,6 @@ async function addCurriculum(req,res){
         }
       );
     }
-    res.send("successfull")
   }
 }
 
@@ -221,4 +221,4 @@ catch (e) {
 }
 }
 
-module.exports = {getproblemcard,getProblem,addCourse,addCurriculum,problemcontent,getCourse,getCourse1}
+module.exports = {getproblemcard,getProblem, getInstructorDetailsByCourseTitle,addCourse,addCurriculum,problemcontent,getCourse,getCourse1}

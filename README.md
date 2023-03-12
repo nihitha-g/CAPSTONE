@@ -26,33 +26,93 @@ http://127.0.0.1:9999/badge/addBadges{
     type:POST,
     Payload:{email:email}
 }
+http://127.0.0.1:9999/badge/addmp{
+    type:POST
+    payload:{userEmail: userEmail,
+            courseId: courseId,
+            moduleId: moduleId}
+}
+http://127.0.0.1:9999/badge/addcp{
+    type:POST
+     payload:{userEmail: userEmail,
+            courseId: courseId,
+            challengeId: challengeId}
+}
+http://127.0.0.1:9999/badge/addqp{
+    type:POST
+     payload:{userEmail: userEmail,
+            courseId: courseId,
+            quizId: quizId}
+}
+http://127.0.0.1:9999/badge/getBadges/+email{
+    type:POST
+}
+
 http://127.0.0.1:9999/userProfile/+email{
     type:POST
 }
 http://127.0.0.1:9999/userProfile/+email{
     type:GET
+}
+
+
+http://127.0.0.1:9999/a/login{
+    type:POST
+    payload:{
+        email
+        password
+    }
+}
+http://127.0.0.1:9999/a/instrutorUpdate{
+    type:POST
+}
+http://127.0.0.1:9999/a/acceptOrReject{
+    type:POST
+}
+http://127.0.0.1:9999/a/status{
+    type:POST
 }
 http://127.0.0.1:9999/courseDetails/gc1/+courseTitle{
     type:GET
 }
 
-http://127.0.0.1:9999/a/login{
+http://127.0.0.1:9999/courseDetails/gc{
+    type:GET
+}
+http://127.0.0.1:9999/courseDetails/problems{
     type:POST
 }
-http://127.0.0.1:9999/instrutorUpdate{
+http://127.0.0.1:9999/courseDetails/Curriculum{
     type:POST
 }
-http://127.0.0.1:9999/acceptOrReject{
+http://127.0.0.1:9999/courseDetails/getProblem/+questionid{
+    type:GET
+}
+http://127.0.0.1:9999/courseDetails/content{
     type:POST
 }
-http://127.0.0.1:9999/status{
-    type
+http://127.0.0.1:9999/courseDetails/savecourse{
+    type:POST
 }
-routes.post('/login',userDetail.authUser)
-// routes.post('/instructorUpdate',userDetail.studentToUserStep1)
-routes.post('/instructorUpdate',upload.single('file'),userDetail.studentToUserStep1)
-routes.post('/acceptOrReject',userDetail.acceptInstructor)
-routes.post('/status',userDetail.getinstructorInfo)
-routes.get('/:email',userDetail.userProfileDetails)
-routes.post('/:userEmail',userDetail.getUserEnrolledCourses)
-routes.get('/get/:Instrutor_Email',userDetail.getCoursesByInstructorEmail)
+http://127.0.0.1:9999/Addchallenge/get{
+    type:GET
+}
+http://127.0.0.1:9999/Addchallenge/:title{
+    type:get
+}
+http://127.0.0.1:9999/Addchallenge/:create{
+    type:POST
+}
+http://127.0.0.1:9999/Addchallenge/solvedBy{
+    type:POST
+}
+http://127.0.0.1:9999/enroll/e{
+    type:POST
+}
+http://127.0.0.1:9999/live{
+    type:POST
+}
+http://127.0.0.1:9999/getLive{
+ type:GET
+}
+
