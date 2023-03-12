@@ -132,6 +132,26 @@ for (let i = 0; i < course.sections.length; i++) {
   $('#three').append(secHtml);
   
 }
+$.get("http://127.0.0.1:9999/courseDetails/"+ courseTitle, function(course) {
+  console.log(course)
+const instructorHtml = `
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">INSTRUCTOR</h6>
+          <h2>${course.instructorName}</h2>
+          <img src="${course.instructorImage}" alt="${course.instructorName}" class="img-fluid rounded-circle mb-4" style="width: 150px;">
+          <p class="lead mb-4">${course.instructorEmail}</p>
+          <p class="lead mb-4">${course.instructorPhone}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+`;
+$('#four').append(instructorHtml);
+})
+// Append the instructor section to the DOM
 
 
 // Quiz Modal

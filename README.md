@@ -28,13 +28,21 @@ http://127.0.0.1:9999/badge/addBadges{
 }
 http://127.0.0.1:9999/badge/addmp{
     type:POST
-
+    payload:{userEmail: userEmail,
+            courseId: courseId,
+            moduleId: moduleId}
 }
 http://127.0.0.1:9999/badge/addcp{
     type:POST
+     payload:{userEmail: userEmail,
+            courseId: courseId,
+            challengeId: challengeId}
 }
 http://127.0.0.1:9999/badge/addqp{
     type:POST
+     payload:{userEmail: userEmail,
+            courseId: courseId,
+            quizId: quizId}
 }
 http://127.0.0.1:9999/badge/getBadges/+email{
     type:POST
@@ -50,6 +58,10 @@ http://127.0.0.1:9999/userProfile/+email{
 
 http://127.0.0.1:9999/a/login{
     type:POST
+    payload:{
+        email
+        password
+    }
 }
 http://127.0.0.1:9999/a/instrutorUpdate{
     type:POST
