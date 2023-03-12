@@ -119,6 +119,46 @@ async function addCurriculum(req,res){
         }
       );
     }
+    res.send('successful')
+  }
+}
+
+
+
+
+
+
+
+
+async function getInstructorDetailsByCourseTitle(req, res) {
+  const courseTitle = req.params.courseTitle;
+  try {
+    // Find the course by title
+    const course = await courseCTRl.Course.findOne({ courseTitle });
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    // Retrieve the instructor's email from the course document
+    const { Instrutor_Email: instructorEmail, imgFile: instructorImage } = course;
+
+    // Find the instructor's details from the User collection
+    const instructor = await userCTRl.User.findOne({ email: instructorEmail });
+
+    if (!instructor) {
+      return res.status(404).json({ message: 'Instructor not found' });
+    }
+
+    return res.json({
+      instructorName: instructor.userName,
+      instructorEmail: instructor.email,
+      instructorPhone: instructor.phone,
+      instructorImage: instructor.imgFile
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Server error' });
   }
 }
 

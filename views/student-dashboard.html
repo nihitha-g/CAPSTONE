@@ -250,6 +250,36 @@ Page content START -->
 				</div>
 				<!-- Counter boxes END -->
 
+				<div class="card border rounded-3">
+					<!-- Card header START -->
+					
+					<!-- Card header END -->
+					<script>
+						email=localStorage.getItem("k")
+						$.ajax({
+						type: "POST",
+						url: "http://127.0.0.1:9999/badge/getBadges/"+email,
+						success: function(result) {
+						  
+							$("#badges").text(result.length);
+						}
+						});
+				
+				    
+						email=localStorage.getItem("k")
+						$.ajax({
+						type: "GET",
+						url: "http://127.0.0.1:9999/userProfile/"+email,
+						success: function(result) {
+							 console.log(result.coursesEnrolled)
+				
+						  
+							$("#totalcourses").text(result[0].coursesEnrolled.length);
+						}
+						});
+				   </script>
+				<!-- Counter boxes END -->
+
 
 			<!-- Main content END -->
 			</div><!-- Row END -->

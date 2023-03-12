@@ -26,7 +26,7 @@ $(document).ready(function(){
             url:'http://localhost:9999/instructor/request',
       
             success:function(result){
-              alert("data saved successsfully")
+              alert("Request Sent Successfully")
             },
       
             error:(result)=>{

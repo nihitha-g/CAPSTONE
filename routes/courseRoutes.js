@@ -18,6 +18,7 @@ routes.post('/:course_name',moduleRoute.getSection)
 routes.get('/course/:Instrutor_Email',moduleRoute.getInsCourse)
 routes.get('/gc',courseRoute.getCourse)
 routes.get('/gc1/:courseTitle',courseRoute.getCourse1)
+routes.get('/:courseTitle',courseRoute.getInstructorDetailsByCourseTitle)
 // routes.post('/getcourse',moduleRoute.getcourse)
 
 module.exports = routes 
