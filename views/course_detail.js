@@ -8,6 +8,12 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
     console.log(course)
     localStorage.setItem('course_id',course._id) 
     localStorage.setItem('module_id',course.section)
+
+    $('#courseVideoButton').click(function(event){
+      event.preventDefault()
+      $('#courseVideo').attr('src',course.courseVideo)
+
+    })
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
   '<div class="row py-5">' +
@@ -31,7 +37,7 @@ a()
 var sec2html=`
 <p class="mb-3">Welcome to the <strong> ${course.courseTitle}</strong></p>
 <p class="mb-3">to become a  expert with this <strong> ${course.courseDescription}</strong></p>
-<p class="mb-3">If you wish to find out the skills that should be covered in a basic digital marketing course syllabus in India or anywhere around the world, then reading this blog will help. Before we delve into the advanced <strong><a href="#" class="text-reset text-decoration-underline">digital marketing course</a></strong> syllabus, let’s look at the scope of digital marketing and what the future holds.</p>
+<p class="mb-3">If you wish to find out the skills that should be covered in a basic ${course.courseTitle} course syllabus in India or anywhere around the world, then reading this blog will help. Before we delve into the advanced <strong><a href="#" class="text-reset text-decoration-underline">${course.courseTitle}</a></strong> syllabus, let’s look at the scope of digital marketing and what the future holds.</p>
 <p class="mb-0">We focus a great deal on the understanding of behavioral psychology and influence triggers which are crucial for becoming a well rounded Digital Marketer. We understand that theory is important to build a solid foundation, we understand that theory alone isn’t going to get the job done so that’s why this course is packed with practical hands-on examples that you can follow step by step.</p>`
 $('#two').append(sec2html)
 console.log("hi")
