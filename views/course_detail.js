@@ -4,23 +4,26 @@ const courseTitle=localStorage.getItem('courseTitle')
 
 console.log(courseTitle)
 $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) {
+  
     console.log(course)
+    $("#course-pills-2").css("display", "none");
+
+    for (let i = 0; i < course.Students_Enrolled.length; i++) {
+      if (localStorage.getItem("k") === course.Students_Enrolled[i]) {
+        $("#course-pills-2").css("display", "block");
+        break; // stop looping once the email is found
+      }
+    }
     localStorage.setItem('course_id',course._id) 
     localStorage.setItem('module_id',course.section)
-   
-  // Update badge
   var sectionHtml = '<section class="bg-light py-0 py-sm-5">' +
   '<div class="container">' +
   '<div class="row py-5">' +
   '<div class="col-lg-8">' +
   '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">COURSE</h6>' +
-  // Badge
-  '<h6 class="mb-3 font-base bg-primary text-white py-2 px-4 rounded-2 d-inline-block">' + course.category + '</h6>' +
-  // Title
   '<h1>' + course.courseTitle  + '</h1>' +
   '<button id="enroll-btn" type="button" class="btn btn-primary" onclick="enrol()" data-index="' + course._id + '">Enroll Now</button>' +
         '</div>' +
-  // Description
   '<p>' + course.courseShortDescription
 + '</p>' 
 
@@ -28,6 +31,10 @@ $.get("http://127.0.0.1:9999/courseDetails/gc1/"+ courseTitle, function(course) 
 
 // Append the section to the DOM
 $('#one').append(sectionHtml);
+
+const enrollButton = document.getElementById('enroll-btn');
+console.log(enrollButton)
+a()
 
 var sec2html=`
 <p class="mb-3">Welcome to the <strong> ${course.courseTitle}</strong></p>
@@ -49,9 +56,10 @@ for (let i = 0; i < course.sections.length; i++) {
     moduleHtml += `
       <div class="d-flex justify-content-between align-items-center">
         <div class="position-relative d-flex align-items-center">
-          <a href="${module.videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
-            <i class="fas fa-play me-0"></i>
-          </a>
+        <a  class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static" data-bs-toggle="modal" data-bs-target="#videoModal">
+        <i class="fas fa-play me-0"></i>
+        </a>
+      
           <span class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-100px w-sm-200px w-md-400px">${module.moduleName}</span>
         </div>
         <div>\
@@ -111,6 +119,27 @@ for (let i = 0; i < course.sections.length; i++) {
     
 
     `;
+
+    videoHtml = `<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="videoModalLabel">Video Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="embed-responsive embed-responsive-16by9">
+            <video width="640" height="360" controls>
+            <source src="${module.videoLink}" type="video/mp4">
+          </video>
+          
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+ 
   }
 
   // Create HTML for the section
@@ -131,6 +160,7 @@ for (let i = 0; i < course.sections.length; i++) {
   `;
 
   $('#three').append(secHtml);
+  $('body').append(videoHtml)
   
 }
 

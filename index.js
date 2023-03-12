@@ -29,6 +29,11 @@ const badgeRoutes=require('./routes/badgeRoutes')
 const liveRoutes=require('./routes/liveRoutes')
 
 //instructors
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 app.use('/a',allUsersRoutes)
 //compiler 
 app.use('/Addchallenge',challengeRoutes)
@@ -48,6 +53,7 @@ app.use('/instructor',InstructorRoutes)
 
 
 app.use('/courseDetails',courseRoutes)
+
 app.use('/course',courseRoutes)
 app.use('/getproblems',courseRoutes)
 

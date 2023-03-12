@@ -134,9 +134,9 @@ $(document).ready(function () {
       method:'POST',
       contentType: 'application/json',
       data:sectiontotal,
-      url:'http://localhost:9999/course/Curriculum',
+      url:'http://localhost:9999/course /Curriculum',
       success:function(result){
-        alert("data saved successsfully")
+        alert("saved curriculum")
       },
 
       error:(result)=>{

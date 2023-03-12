@@ -118,6 +118,7 @@ async function addCurriculum(req,res){
         }
       );
     }
+    res.send("successfull")
   }
 }
 
