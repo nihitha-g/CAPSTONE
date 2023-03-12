@@ -181,8 +181,9 @@ function awardbadge(){
     }
 
   $(document).ready(function() {
+    const email=window.localStorage.getItem('k')
     // make a GET request to the getUserBadges endpoint to retrieve the user's earned badges
-    $.post('http://127.0.0.1:9999/badge/getBadges/priyanshu@gmail.com', function(data) {
+    $.post('http://127.0.0.1:9999/badge/getBadges/'+email, function(data) {
       // loop over each badge in the response data and dynamically generate HTML elements to display the badges
       data.forEach(function(badge) {
         var badgeHtml = '<div class="col-md-4">' +

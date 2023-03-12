@@ -65,12 +65,22 @@ http://127.0.0.1:9999/a/login{
 }
 http://127.0.0.1:9999/a/instrutorUpdate{
     type:POST
+    payload:[
+        Message:req.body.Message,
+        File:req.file.location,
+        Linked:req.body.Linked
+    ]
+
 }
 http://127.0.0.1:9999/a/acceptOrReject{
     type:POST
+    
 }
 http://127.0.0.1:9999/a/status{
     type:POST
+    payload:{
+        email:email
+    }
 }
 http://127.0.0.1:9999/courseDetails/gc1/+courseTitle{
     type:GET
@@ -99,18 +109,42 @@ http://127.0.0.1:9999/Addchallenge/get{
 }
 http://127.0.0.1:9999/Addchallenge/:title{
     type:get
+
 }
-http://127.0.0.1:9999/Addchallenge/:create{
+http://127.0.0.1:9999/Addchallenge/create{
     type:POST
+    payload:{
+        category: req.body.courseId , 
+    title: req.body.title,
+     description: req.body.description,
+      flag: req.body.flag, 
+      points: req.body.points, 
+      hint: req.body.hint
+      }
 }
 http://127.0.0.1:9999/Addchallenge/solvedBy{
     type:POST
+    payload:{title = req.body.title;
+ flag = req.body.flag;
+userEmail = req.body.userEmail;
+}
 }
 http://127.0.0.1:9999/enroll/e{
     type:POST
+    payload={
+         email = req.body.Email;
+courseName = req.body.Course_Name;
+    }
 }
 http://127.0.0.1:9999/live{
     type:POST
+    payload:{
+         title:req.body.title,
+      date:req.body.date,
+      time:req.body.time,
+      duration:req.body.duration,
+      link:req.body.link
+    }
 }
 http://127.0.0.1:9999/getLive{
  type:GET
