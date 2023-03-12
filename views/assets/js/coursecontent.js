@@ -62,6 +62,7 @@ $(document).ready(function() {
             contentType: false,
             success: function(response) {
               console.log(response);
+              alert('sucessfully added please continue')
             },
             error: function(error) {
               console.log(error);
