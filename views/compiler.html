@@ -252,9 +252,9 @@
 });
 
 </script>
-<script src="js/showproblem.js"></script>
 <script>
-  const problemId = window.localStorage.getItem('problemId')
+  const problemId = window.localStorage.getItem('programid')
+  console.log()
    $.get('http://localhost:9999/course/getProblem/'+problemId)
       .done(function(data) {
         $('#editor1').append(data.problemStatement);

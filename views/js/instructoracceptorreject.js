@@ -8,7 +8,7 @@ function get_req(){ return new Promise((res, rej) => {
             if(data[i].isInstructor!=null && data[i].isInstructor=='pending'){
  
             
-            document.querySelector('#all_instructors').innerHTML+=`<tr class="inner-box">
+            document.querySelector('#instructorslist').innerHTML+=`<tr class="inner-box">
             <th scope="row">
             <div class="event-date">
             <span>${count}</span>
@@ -24,13 +24,9 @@ function get_req(){ return new Promise((res, rej) => {
             <div class="time">
             <span id="${data[i].email}">${data[i].email}</span>
             </div>
-            <div class="categories">
-                <button id="showpdf" class="btn-primary" onclick="showpdf()" class="quiz-button">Show PDF</button>
-              <object id="pdfobject" class="pdfobject" style="visibility: hidden;" data="" width="800px" height="100%"><button class="close-button" onclick="closeVideo()">close</button>
-            </object>
-            </div>
-            </div><button id=showpdf" onclick="resume()" value="Resume">Resume</button>
-            <embed id="resume" class = "resume" src="${data[i].Resume}" style="visibility: hidden;" width="100%" height ="100%"><button class="close-button" onclick="closeVideo()">close</button></embed>
+            
+            </div><button id=showpdf" class="btn btn-primary-soft" onclick="resume()" value="Resume">Resume</button>
+            <embed id="resume" class = "resume" src="${data[i].Resume}" style="display: none;" width="100%" height ="100%"><button class="btn btn-danger-soft" onclick="closeVideo()">close</button></embed>
             </td>
             <td>
             <div class="r-no">
@@ -44,14 +40,14 @@ function get_req(){ return new Promise((res, rej) => {
             </div>
             </td>
             </tr>
-            </div>`
+            `
             count=count+1
         }}
         
             console.log("onedone")
         //     abtn = document.getElementById("accept-button"+email)
         //     rbtn = document.getElementById("reject-button"+email)
-        const ss = document.getElementById("all_instructors")
+        const ss = document.getElementById("instructorslist")
         console.log(ss)
         ss.addEventListener("click",(e) => {
             if(e.target.nodeName==='A' && (e.target.name === "ab" || e.target.name === "rb"))
@@ -89,3 +85,23 @@ function get_req(){ return new Promise((res, rej) => {
 })
 })
 }
+
+
+function resume() {
+    var resume = document.getElementById("resume");
+    var showResumeButton = document.getElementById("showpdf");
+    if (resume.style.display === "none") {
+      resume.style.display = "block";
+      showResumeButton.innerText = "Hide Resume";
+    } else {
+      resume.style.display = "none";
+      showResumeButton.innerText = "Show Resume";
+    }
+  }
+  function closeVideo() {
+    var resume = document.getElementById("resume");
+    var showResumeButton = document.getElementById("showResume");
+    resume.style.display = "none";
+    showResumeButton.innerText = "Show Resume";
+  }
+  
