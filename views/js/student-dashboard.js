@@ -8,6 +8,9 @@ $(document).ready(function() {
           $(this).attr('src', data[0].imgFile);
           
         });
+        $('#navemail').text(email)
+        $('#navname').text(data[0].userName)
+
       var htmlCode = '<div>' +
                      '<h1 class="my-1 fs-4">' + data[0].userName + '</h1>' +
                      '<ul class="list-inline mb-0">' +

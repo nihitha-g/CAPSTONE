@@ -332,17 +332,14 @@ Page content START -->
 							<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
 								<!-- Dashboard menu -->
 								<div class="list-group list-group-dark list-group-borderless">
-									<a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-									<a class="list-group-item" href="calender.html"><i class="bi bi-card-checklist fa-fw me-2"></i>Calender</a>
+									<a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+									<a class="list-group-item " href="calender.html"><i class="bi bi-card-checklist fa-fw me-2"></i>Calender</a>
 									<a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
-									<a class="list-group-item" href="CTF.html"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Challenges</a>
-
+									<a class="list-group-item" href="studentCTF.html"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Challenges</a>
 									<a class="list-group-item" href="dash.html"><i class="bi bi-cart-check fa-fw me-2"></i>Badges</a>
-									<a class="list-group-item" href="assignment.html"><i class="bi bi-pencil-square fa-fw me-2"></i>Assignments</a>
-									<a class="list-group-item" href="instructor-setting.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a>
-									<a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
-									<a class="list-group-item text-danger bg-danger-soft-hover" href="#"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
+									<a class="list-group-item active" href="assignment.html"><i class="bi bi-pencil-square fa-fw me-2"></i>Assignments</a>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -353,10 +350,10 @@ Page content START -->
 
 			<!-- Main content START -->
 			<div class="col-xl-9">
-                <div class="row">
-					<div id="cardProblem"></div>
-                </div>
-		</div>
+				<div class="row">
+				  <div id="cardProblem" class="d-flex justify-content-center align-items-center flex-wrap"></div>
+				</div>
+			  </div>
 	</div>	
 </section>
 <!-- =======================
@@ -419,15 +416,22 @@ Footer END -->
 		data.forEach(function(document) {
 			console.log(document._id)
 			window.localStorage.setItem('problemId',document._id)
-		  problemcard = `<div class="card" style="width: 18rem;">
-			<div class="card-body border-2" >
-			  <h5 class="card-title">${document.problemStatement} </h5>
-			  <p class="card-text" >${document.inputFormat}</p>
-			  <a href="compiler.html" class="btn btn-primary" onclick="showprogram('${document._id}')"
->Go somewhere</a>
-			</div>
-		  </div>`
-		  $('#cardProblem').append(problemcard)
+			problemcard = `
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body border-2" >
+            <h5 class="card-title">${document.problemStatement} </h5>
+            <p class="card-text" >${document.inputFormat}</p>
+            <a href="compiler.html" class="btn btn-primary" onclick="showprogram('${document._id}')">Assignement</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+$('#cardProblem').append(problemcard);
 		});
 	  },
 	  error: function(xhr, status, error) {

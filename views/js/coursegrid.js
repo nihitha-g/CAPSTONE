@@ -1,8 +1,9 @@
 $.get("http://127.0.0.1:9999/courseDetails/gc", function(data) {
     console.log(data);
+
     $("#course-list").empty();
     $.each(data, function(index, course) {
-        var cardItemHtml = '<div class="col-sm-7 p-3 col-xl-5">' +
+        var cardItemHtml = '<div class="col-sm-6 col-lg-4 mb-4">' +
             '<div class="card shadow h-100 course-card" data-course="' + course.courseTitle + '">' +
             '<img src="' + course.courseImage + '" class="card-img-top" alt="course image">' +
             '<div class="card-body pb-0">' +
@@ -42,4 +43,6 @@ $.get("http://127.0.0.1:9999/courseDetails/gc", function(data) {
 
     // Add the "d-flex" class to the "course-list
     $("#course-list").addClass("d-flex");
+    $(".card").css("margin", "15px");
+
 })
